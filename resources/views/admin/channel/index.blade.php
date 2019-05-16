@@ -323,18 +323,18 @@
             var datas = eval('('+datas+')');
             fillField('data_form',datas);     //自定义的表单数据填充函数
             $("#stack1").modal("show");
-            url = '/admin/channle';
+            url = '/admin/channel';
         }
 
         //编辑框初始化 设置url
         function edit(id){
-            $.get('/admin/channle/edit/'+id,function(data){
+            $.get('/admin/channel/edit/'+id,function(data){
                 $('#data_form')[0].reset()
                 $("#form-title").html("编辑");
                 fillField('data_form',data);
                 $("#data_form").find("input[name='_token']").val('{{csrf_token()}}');
                 $("#stack1").modal("show");
-                url = '/admin/channle/update/'+id;
+                url = '/admin/channel/update/'+id;
             },'json')
         }
 
