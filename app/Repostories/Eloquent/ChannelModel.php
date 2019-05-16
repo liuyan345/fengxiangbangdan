@@ -26,7 +26,7 @@ class ChannelModel extends Base
             $orderField      = $_POST['columns'][$orderFieldIndex]['data'];
         }else{
             $orderType       = "desc";
-            $orderField      = "sort";
+            $orderField      = "created_at";
         }
 
 //        if(!empty($request->input('start_time'))){
