@@ -370,6 +370,10 @@
                 var field = $(this).attr('name');
                 $(this).val(data[field]);
             })
+            $('#'+form).find("input[type='password']").each(function(){
+                var field = $(this).attr('name');
+                $(this).val(data[field]);
+            })
 
             $('#'+form).find("input[type='hidden']").each(function(){
                 var field = $(this).attr('name');
