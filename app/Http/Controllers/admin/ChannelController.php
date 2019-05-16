@@ -8,7 +8,6 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Repostories\Eloquent\ChannelModel as Actor;
-use Illuminate\Support\Facades\Redis;
 
 class ChannelController extends Controller{
     private $actor;

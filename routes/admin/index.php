@@ -63,7 +63,7 @@ Route::group(['prefix' => 'admin','middleware'=>'AdminCommon'], function () {
      * auther  刘岩
      * 渠道列表
      */
-    Route::get("channel", 'admin\Controller@index');
+    Route::get("channel", 'admin\ChannelController@index');
     Route::post("channel", 'admin\ChannelController@store');
     Route::post('channel/datalist','admin\ChannelController@datalist');
     Route::get('channel/edit/{id}', 'admin\ChannelController@edit');
