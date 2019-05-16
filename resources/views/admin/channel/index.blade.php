@@ -145,7 +145,7 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">类型</label>
                                     <div class="col-md-6">
-                                        <select name="status" class="form-control">
+                                        <select name="type" class="form-control">
                                             <option value="">-请选择-</option>
                                             <option value="1">wap</option>
                                         </select>
@@ -261,7 +261,7 @@
                         },
                         'aoColumns':[
                             {'mData':'id'},
-                            {'mData':'channel'},
+                            {'mData':'name'},
 
                             {'mData':function(lineData){
                                 if(lineData.type == 1){
