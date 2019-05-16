@@ -7,7 +7,7 @@
 <!-- BEGIN HEAD -->
 <head>
     <meta charset="utf-8" />
-    <title>后台首页</title>
+    <title>分享榜单-后台首页</title>
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta content="width=device-width, initial-scale=1" name="viewport" />
     <meta content="liuyan" name="author" />
@@ -595,7 +595,7 @@
     <!-- END CONTAINER -->
     <!-- BEGIN FOOTER -->
     <div class="page-footer">
-        <div class="page-footer-inner"> <?php echo date('Y');?> &copy; 北京微赢互动科技有限公司
+        <div class="page-footer-inner"> <?php echo date('Y');?> &copy;
             {{--<a target="_blank" href="http://keenthemes.com">Keenthemes</a> &nbsp;|&nbsp;--}}
             {{--<a href="http://themeforest.net/item/metronic-responsive-admin-dashboard-template/4021469?ref=keenthemes" title="Purchase Metronic just for 27$ and get lifetime updates for free" target="_blank">Purchase Metronic!</a>--}}
         </div>
