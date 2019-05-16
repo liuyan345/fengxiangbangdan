@@ -36,7 +36,7 @@ class ChannelModel extends Base
 //        }
 
         if(!empty($request->input('name'))){
-            $this->model  = $this->model->where('cate_name','like','%'.$request->input('name').'%');
+            $this->model  = $this->model->where('name','like','%'.$request->input('name').'%');
         }
 
         if(!empty($request->input('status'))){
