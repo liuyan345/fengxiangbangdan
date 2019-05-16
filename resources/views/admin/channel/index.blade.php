@@ -55,13 +55,13 @@
                     <i class="icon-settings font-green"></i>
                     <span class="caption-subject font-green sbold uppercase">渠道列表 </span>
                 </div>
-                {{--<div class="actions">--}}
-                    {{--<div class="btn-group btn-group-devided" data-toggle="buttons">--}}
-                        {{--<label class="btn btn-transparent green btn-outline btn-outline btn-sm active" id="option1">--}}
-                            {{--<input type="radio" name="options" class="toggle" >新增--}}
-                        {{--</label>--}}
-                    {{--</div>--}}
-                {{--</div>--}}
+                <div class="actions">
+                    <div class="btn-group btn-group-devided" data-toggle="buttons">
+                        <label class="btn btn-transparent green btn-outline btn-outline btn-sm active" onclick="add()">
+                            <input type="radio" name="options" class="toggle" >新增
+                        </label>
+                    </div>
+                </div>
             </div>
             <div class="portlet-body">
                 <div class="table-container">
