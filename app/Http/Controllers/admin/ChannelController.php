@@ -3,14 +3,14 @@
 namespace App\Http\Controllers\admin;
 /**
  * auther 刘岩
- * 视频分类表控制器
+ * 渠道控制器
  * */
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Repostories\Eloquent\CateModel as Actor;
+use App\Repostories\Eloquent\ChannelModel as Actor;
 use Illuminate\Support\Facades\Redis;
 
-class CateController extends Controller{
+class ChannelController extends Controller{
     private $actor;
 
     public function __construct(Actor $actor){
@@ -18,7 +18,7 @@ class CateController extends Controller{
     }
 
     public function index(){
-        return view('admin/video/cate');
+        return view('admin/channel/index');
     }
 
     public function datalist(Request $request){
@@ -28,6 +28,7 @@ class CateController extends Controller{
     }
 
     public function store(Request $request){
+        $_POST['asepasswd'] = getmd5passwd($_POST['passwd']);
         $data = $this->actor->store($request);
         return response()->json($data);
     }
@@ -39,6 +40,7 @@ class CateController extends Controller{
     }
 
     public function update($id,Request $request){
+        $_POST['asepasswd'] = getmd5passwd($_POST['passwd']);
         $res = $this->actor->update($request,$id);
         return response()->json($res);
     }

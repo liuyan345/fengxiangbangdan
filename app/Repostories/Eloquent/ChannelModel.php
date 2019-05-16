@@ -7,14 +7,13 @@
  */
 
 namespace App\Repostories\Eloquent;
-use App\Models\Cate;
+use App\Models\Channel;
 use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
 
-class CateModel extends Base
+class ChannelModel extends Base
 {
     public function __construct(Request $request) {
-        $this->model = new Cate();
+        $this->model = new Channel();
     }
 
 
@@ -36,8 +35,8 @@ class CateModel extends Base
 //            $this->model  = $this->model->whereBetween('cdate',[$start,$end]);
 //        }
 
-        if(!empty($request->input('cate_name'))){
-            $this->model  = $this->model->where('cate_name','like','%'.$request->input('cate_name').'%');
+        if(!empty($request->input('name'))){
+            $this->model  = $this->model->where('cate_name','like','%'.$request->input('name').'%');
         }
 
         if(!empty($request->input('status'))){
@@ -48,8 +47,8 @@ class CateModel extends Base
         $rows = isset($_POST['length']) ? intval($_POST['length']) == 0 ? 10 : intval($_POST['length']) : 10;
 
 
-        $list       =  $this->model->select($columns)->orderBy($orderField,$orderType)->offset($start)->limit($rows)->get();
         $total      =  $this->model->count();
+        $list       =  $this->model->select($columns)->orderBy($orderField,$orderType)->offset($start)->limit($rows)->get();
 
 
 

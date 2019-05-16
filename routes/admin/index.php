@@ -59,51 +59,47 @@ Route::group(['prefix' => 'admin','middleware'=>'AdminCommon'], function () {
     Route::post('admin/changeStatus/{id}', 'admin\AdminController@changeStatus');
 
 
-
+    /**
+     * auther  刘岩
+     * 渠道列表
+     */
+    Route::get("channel", 'admin\Controller@index');
+    Route::post("channel", 'admin\ChannelController@store');
+    Route::post('channel/datalist','admin\ChannelController@datalist');
+    Route::get('channel/edit/{id}', 'admin\ChannelController@edit');
+    Route::post('channel/update/{id}', 'admin\ChannelController@update');
 
     /**
      * auther  刘岩
-     * 用户列表
+     * 广告列表
      */
-    Route::get("user", 'admin\UserController@index');
-    Route::post('user/datalist','admin\UserController@datalist');
-    Route::get('user/edit/{id}', 'admin\UserController@edit');
-    Route::post('user/update/{id}', 'admin\UserController@update');
-
-    /**
-     * auther  刘岩
-     * 视频列表
-     */
-    Route::get("videoList", 'admin\VideoListController@index');
-    Route::post('videoList/datalist','admin\VideoListController@datalist');
-    Route::get('videoList/edit/{id}', 'admin\VideoListController@edit');
-    Route::post('videoList/update/{id}', 'admin\VideoListController@update');
-    Route::post('videoList/upload', 'admin\VideoListController@upload');
-    Route::post('videoList/delete/{id}', 'admin\VideoListController@delete');
+    Route::get("ad", 'admin\AdController@index');
+    Route::post("ad", 'admin\AdController@store');
+    Route::post('ad/datalist','admin\AdController@datalist');
+    Route::get('ad/edit/{id}', 'admin\AdController@edit');
+    Route::post('ad/update/{id}', 'admin\AdController@update');
+    Route::post('ad/delete/{id}', 'admin\AdController@delete');
+    Route::post('ad/select', 'admin\AdController@select');
 
     /**
      * auther liuyan
-     * 分类管理
+     * 渠道包管理
     */
-    Route::get("category", 'admin\CateController@index');
-    Route::post("category", 'admin\CateController@store');
-    Route::post('category/datalist','admin\CateController@datalist');
-    Route::get('category/edit/{id}', 'admin\CateController@edit');
-    Route::post('category/update/{id}', 'admin\CateController@update');
-    Route::post('category/delete/{id}', 'admin\CateController@delete');
+    Route::get("pack", 'admin\PackController@index');
+    Route::post("pack", 'admin\PackController@store');
+    Route::post('pack/datalist','admin\PackController@datalist');
+    Route::get('pack/edit/{id}', 'admin\PackController@edit');
+    Route::post('pack/update/{id}', 'admin\PackController@update');
+    Route::post('pack/delete/{id}', 'admin\PackController@delete');
 
     /**
      * auther liuyan
-     * 转发统计列表
+     * 数据列表
      */
-    Route::get("reportZf", 'admin\ReportController@zf');
-    Route::post('reportZf/datalist','admin\ReportController@zfdatalist');
-    /**
-     * auther liuyan
-     * 视频统计列表
-     */
-    Route::get("reportVideo", 'admin\ReportController@video');
-    Route::post('reportVideo/datalist','admin\ReportController@videodatalist');
+    Route::get("data", 'admin\DataController@zf');
+    Route::post('data/datalist','admin\DataController@zfdatalist');
+    Route::post('data/upload','admin\DataController@upload');
+
 
 
 });

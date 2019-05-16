@@ -42,9 +42,9 @@
         }
     </style>
 @stop
-@section('ptitle','用户管理')
+@section('ptitle','渠道管理')
 
-@section('title','用户列表')
+@section('title','渠道列表')
 
 @section('content')
     <div class="portlet-body">
@@ -53,7 +53,7 @@
             <div class="portlet-title">
                 <div class="caption">
                     <i class="icon-settings font-green"></i>
-                    <span class="caption-subject font-green sbold uppercase">用户列表 </span>
+                    <span class="caption-subject font-green sbold uppercase">渠道列表 </span>
                 </div>
                 {{--<div class="actions">--}}
                     {{--<div class="btn-group btn-group-devided" data-toggle="buttons">--}}
@@ -66,7 +66,7 @@
             <div class="portlet-body">
                 <div class="table-container">
                     <div class="table-actions-wrapper">
-                        <input type="text" class="form-control input-inline" style="margin-right: 8px;" placeholder="用户昵称" id="nickName">
+                        <input type="text" class="form-control input-inline" style="margin-right: 8px;" placeholder="渠道昵称" id="name">
                         <select class="bs-select form-control" id="status" style="margin-right: 8px;width:118px;float: left">
                             <option value="">状态</option>
                             <option value="1">正常</option>
@@ -78,9 +78,11 @@
                         <thead>
                         <tr role="row" class="heading">
                             <th width="5%">ID</th>
-                            <th width="7%">用户昵称</th>
-                            <th width="10%">用户头像</th>
+                            <th width="7%">渠道名</th>
+                            <th width="10%">类型</th>
                             <th width="7%">状态</th>
+                            <th width="7%">联系人</th>
+                            <th width="7%">联系人手机</th>
                             <th width="10%">操作</th>
                         </tr>
                         </thead>
@@ -105,25 +107,50 @@
                             <div class="form-body">
                                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">用户昵称</label>
+                                    <label class="col-md-3 control-label">渠道名称</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="nickName" placeholder="">
+                                        <input type="text" class="form-control" name="name" placeholder="">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">用户性别</label>
+                                    <label class="col-md-3 control-label">渠道密码</label>
                                     <div class="col-md-6">
-                                        <input type="radio" name="gender" value="1"> 男
-                                        <input type="radio" name="gender" value="2"> 女
+                                        <input type="password" class="form-control" name="passwd" placeholder="">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">用户省份</label>
+                                    <label class="col-md-3 control-label">联系人</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="province" placeholder="">
+                                        <input type="text" class="form-control" name="linkman" placeholder="">
                                     </div>
                                 </div>
-
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">联系人手机</label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" name="linkmanMobile" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">邮箱</label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" name="email" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">区域</label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" name="area" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">类型</label>
+                                    <div class="col-md-6">
+                                        <select name="status" class="form-control">
+                                            <option value="">-请选择-</option>
+                                            <option value="1">wap</option>
+                                        </select>
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">状态</label>
                                     <div class="col-md-6">
@@ -163,7 +190,6 @@
     <script src="{{asset('/style_js/cpcAdmin/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js')}}" type="text/javascript"></script>
     <script src="{{asset('/style_js/cpcAdmin/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('/style_js/cpcAdmin/assets/pages/scripts/table-datatables-editable.min.js')}}" type="text/javascript"></script>
-    <script src="{{asset('/style_js/cpcAdmin/scripts/user.js')}}" type="text/javascript"></script>
 
 @stop
 
@@ -189,15 +215,126 @@
 
 
 
+        var EcommerceOrders = function () {
+
+            var handleOrders = function () {
+                var grid = new Datatable();
+                grid.init({
+                    src: $("#datatable_orders"),
+                    onSuccess: function (grid) {
+                    },
+                    onError: function (grid) {
+                        // execute some code on network or other general error
+                    },
+                    loadingMessage: 'Loading...',
+                    dataTable: {
+                        "dom": "<'row'<'col-md-12 col-sm-12'<'table-group-actions pull-left'>>r>t<'row'<'col-md-8 col-sm-12'pli><'col-md-4 col-sm-12'>>",
+                        "lengthMenu": [
+                            [10, 20, 50, 100, 150],
+                            [10, 20, 50, 100, 150] // change per page values here
+                        ],
+                        "sAjaxDataProp" : "data",
+                        "pageLength": 10, // default record count per page
+                        "ajax": {
+                            "url": "/admin/channel/datalist", // ajax source
+                            "type": "POST",
+                            "data": function (d) {
+                                d._token = "{{csrf_token()}}";
+                                d.name = $("#name").val();
+                                d.status = $("#status").val();
+                            }
+                        },
+                        'sort': false,
+                        "sPaginationType": "full_numbers",      //翻页界面类型
+                        "oLanguage": {                          //汉化
+                            "sLengthMenu": "每页显示 _MENU_ 条记录",
+                            "sZeroRecords": "没有检索到数据",
+                            "sInfo": "当前数据为从第 _START_ 到第 _END_ 条数据；总共有 _TOTAL_ 条记录",
+                            "sInfoEmtpy": "没有数据",
+                            "sProcessing": "正在加载数据...",
+                            "oPaginate": {
+                                "sFirst": "首页",
+                                "sPrevious": "前页",
+                                "sNext": "后页",
+                                "sLast": "尾页"
+                            }
+                        },
+                        'aoColumns':[
+                            {'mData':'id'},
+                            {'mData':'channel'},
+
+                            {'mData':function(lineData){
+                                if(lineData.type == 1){
+                                    return "wap";
+                                }
+                            }},
+                            {'mData':function(lineData){
+                                if(lineData.status == 1){
+                                    return "<span style='color:green'>上架</span>";
+                                }else if(lineData.status == 2){
+                                    return "<span style='color:red'>下架</span>";
+                                }
+                            }},
+                            {'mData':'linkman'},
+                            {'mData':'linkmanMobile'},
+                            { "mData": function(lineData){
+                                var id = lineData.id;
+                                var del = '<button  class="btn btn-sm btn-danger" onclick="del(\''+id+'\')">删除<i class="icon-minus"></i></button>';
+                                var edit = '<button  class="btn btn-sm btn-info" onclick="edit(\''+id+'\')">编辑<i class="icon-minus"></i></button>';
+                                return del +" " +edit;
+                            } }
+                        ],
+
+                        "aoColumnDefs": [
+                            {
+                                'orderable': false,
+                                'targets': '_all'
+                            }
+                        ],
+                    }
+                });
+                grid.getTableWrapper().on('click', '.table-group-action-submit', function (e) {
+                    //自己定义的搜索框，可以是时间控件，或者checkbox 等等
+                    grid.getDataTable().ajax.reload();
+                });
+            }
+
+            return {
+
+                init: function () {
+                    handleOrders();
+                }
+
+            };
+
+        }();
+
+        if (App.isAngularJsApp() === false) {
+            jQuery(document).ready(function() {
+                EcommerceOrders.init();
+            });
+        }
+
+
+        function add(pid){
+            $("#form-title").html("新增菜单");
+            var _token = "{{csrf_token()}}";
+            var datas = '{"name":"","linkman":"","passwd":"","linkman":"","linkmanMobile":"","status":"1","area":"","email":"","type":"","_token":"'+_token+'"}';
+            var datas = eval('('+datas+')');
+            fillField('data_form',datas);     //自定义的表单数据填充函数
+            $("#stack1").modal("show");
+            url = '/admin/channle';
+        }
+
         //编辑框初始化 设置url
         function edit(id){
-            $.get('/admin/user/edit/'+id,function(data){
+            $.get('/admin/channle/edit/'+id,function(data){
                 $('#data_form')[0].reset()
                 $("#form-title").html("编辑");
                 fillField('data_form',data);
                 $("#data_form").find("input[name='_token']").val('{{csrf_token()}}');
                 $("#stack1").modal("show");
-                url = '/admin/user/update/'+id;
+                url = '/admin/channle/update/'+id;
             },'json')
         }
 
