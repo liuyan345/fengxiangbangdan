@@ -1,6 +1,6 @@
 <?php
 Route::get('/', function(){
-    return redirect("/admin/login");
+    return redirect("/home/login");
 });
 Route::get('/admin/login', 'admin\PublicController@login');
 Route::post('/admin/login', 'admin\PublicController@checklogin');
@@ -10,6 +10,10 @@ Route::get('/nopower', function(){
     echo "<script>function getTopWinow(){var p = window;while(p != p.parent){p = p.parent;} return p;};alert('你没有此权限,请登录！');var top = getTopWinow();top.location.href = '/admin/login'</script>";
 });
 
+Route::get('/home/login', 'home\PublicController@login');
+Route::group(['prefix' => 'home','middleware'=>'HomeCommon'], function () {
+
+});
 
 
 Route::group(['prefix' => 'admin','middleware'=>'AdminCommon'], function () {
@@ -100,9 +104,6 @@ Route::group(['prefix' => 'admin','middleware'=>'AdminCommon'], function () {
     Route::post('data/datalist','admin\DataController@datalist');
     Route::post('data/upload','admin\DataController@upload');
     Route::get('data/download','admin\DataController@download');
-
-
-
 });
 
 

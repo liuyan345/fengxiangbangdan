@@ -40,8 +40,8 @@
 <!-- BEGIN LOGIN -->
 <div class="content">
     <!-- BEGIN LOGIN FORM -->
-    <form class="login-form" action="/admin/login" method="post">
-        <h3 class="form-title font-green">欢迎登录</h3>
+    <form class="login-form" action="/home/login" method="post">
+        <h3 class="form-title font-green">欢迎渠道商登录-</h3>
         <div class="alert alert-danger display-hide">
             <button class="close" data-close="alert"></button>
             <span> Enter any username and password. </span>
