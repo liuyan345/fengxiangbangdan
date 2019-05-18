@@ -110,7 +110,7 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">所属广告</label>
                                     <div class="col-md-6">
-                                        <select class="js-example-basic-single form-control" name="ad_id">
+                                        <select class="js-example-basic-single" name="ad_id">
                                             <option value="">-请选择-</option>
                                             @foreach($adInfo as $k=>$v)
                                                 <option value="{{$k}}">{{$v}}</option>
@@ -128,7 +128,7 @@
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">所属渠道</label>
                                     <div class="col-md-6">
-                                        <select class="js-example-basic-single form-control" name="channel_id">
+                                        <select class="js-example-basic-single" name="channel_id">
                                             <option value="">-请选择-</option>
                                             @foreach($channelInfo as $k1=>$v1)
                                                 <option value="{{$k1}}">{{$v1}}</option>
