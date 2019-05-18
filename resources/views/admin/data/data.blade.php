@@ -1,6 +1,6 @@
 @extends('admin.public')
 @section('style')
-
+    <link href="{{asset('/datetimepicker/css/bootstrap-datetimepicker.min.css')}}" rel="stylesheet" media="screen">
     <style>
         .search_laber {
             float: left;
@@ -179,6 +179,9 @@
     <script src="{{asset('/style_js/cpcAdmin/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js')}}" type="text/javascript"></script>
     <script src="{{asset('/style_js/cpcAdmin/assets/global/plugins/icheck/icheck.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('/js/jquery.form.js')}}" type="text/javascript"></script>
+    <script type="text/javascript" src="{{asset('/datetimepicker/js/bootstrap-datetimepicker.js')}}" charset="UTF-8"></script>
+    <script type="text/javascript" src="{{asset('/datetimepicker/js/locales/bootstrap-datetimepicker.zh-CN.js')}}" charset="UTF-8"></script>
+
 @stop
 @section('page_javascript')
     <script>
@@ -190,6 +193,17 @@
                 grid.init({
                     src: $("#datatable_orders"),
                     onSuccess: function (grid) {
+                        $('.form_datetime').datetimepicker({
+                            language:  'zh-CN',
+                            weekStart: 1,
+                            todayBtn:  1,
+                            autoclose: 1,
+                            todayHighlight: 1,
+                            startView: 2,
+                            minView: 2,
+                            forceParse: 0,
+                            setDate: new Date()
+                        });
                     },
                     onError: function (grid) {
                         // execute some code on network or other general error
