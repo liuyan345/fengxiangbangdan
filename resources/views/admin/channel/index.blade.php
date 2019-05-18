@@ -83,6 +83,7 @@
                             <th width="7%">状态</th>
                             <th width="7%">联系人</th>
                             <th width="7%">联系人手机</th>
+                            <th width="7%">联系人qq</th>
                             <th width="10%">操作</th>
                         </tr>
                         </thead>
@@ -128,6 +129,12 @@
                                     <label class="col-md-3 control-label">联系人手机</label>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" name="linkmanMobile" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">联系人qq</label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" name="qq" placeholder="">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -277,6 +284,7 @@
                             }},
                             {'mData':'linkman'},
                             {'mData':'linkmanMobile'},
+                            {'mData':'qq'},
                             { "mData": function(lineData){
                                 var id = lineData.id;
                                 var del = '<button  class="btn btn-sm btn-danger" onclick="del(\''+id+'\')">删除<i class="icon-minus"></i></button>';
@@ -320,7 +328,7 @@
             $("#data_form").find("input[name='name']").removeAttr("disabled");
             $("#form-title").html("新增菜单");
             var _token = "{{csrf_token()}}";
-            var datas = '{"name":"","linkman":"","passwd":"","linkman":"","linkmanMobile":"","status":"1","area":"","email":"","type":"","_token":"'+_token+'"}';
+            var datas = '{"name":"","qq":"","linkman":"","passwd":"","linkman":"","linkmanMobile":"","status":"1","area":"","email":"","type":"","_token":"'+_token+'"}';
             var datas = eval('('+datas+')');
             fillField('data_form',datas);     //自定义的表单数据填充函数
             $("#stack1").modal("show");
