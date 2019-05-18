@@ -125,9 +125,9 @@
             <div class="portlet-body">
                 <div class="table-container">
                     <div class="table-actions-wrapper">
-                        <input type="text" class="form-control input-inline" style="margin-right: 8px;" placeholder="广告名称" id="ad_name">
-                        <input type="text" class="form-control input-inline" style="margin-right: 8px;" placeholder="渠道名称" id="channel_name">
-                        <input type="text" class="form-control input-inline" style="margin-right: 8px;" placeholder="渠道包" id="pack_name">
+                        <input type="text" class="form-control input-inline" style="margin-right: 8px;float: left" placeholder="广告名称" id="ad_name">
+                        <input type="text" class="form-control input-inline" style="margin-right: 8px;float: left" placeholder="渠道名称" id="channel_name">
+                        <input type="text" class="form-control input-inline" style="margin-right: 8px;float: left" placeholder="渠道包" id="pack_name">
 
                         <div class="search_laber">
                             <div class="input-group date form_datetime" data-date=""  data-date-format="yyyy-mm-dd" data-link-format="yyyy-mm-dd" data-link-field="start_time">
