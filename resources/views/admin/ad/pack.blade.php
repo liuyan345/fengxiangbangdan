@@ -332,9 +332,9 @@
                 $('#data_form')[0].reset()
                 $("#form-title").html("编辑");
                 fillField('data_form',data);
-                $("#data_form").find(input[name='pack_name']).attr("disabled","disabled");
-                $("#data_form").find(select[name='channel_id']).attr("disabled","disabled");
-                $("#data_form").find(select[name='ad_id']).attr("disabled","disabled");
+                $("#data_form").find("input[name='pack_name']").attr("disabled","disabled");
+                $("#data_form").find("select[name='channel_id']").attr("disabled","disabled");
+                $("#data_form").find("select[name='ad_id']").attr("disabled","disabled");
                 $("#data_form").find("input[name='_token']").val('{{csrf_token()}}');
                 $("#stack1").modal("show");
                 url = '/admin/pack/update/'+id;
