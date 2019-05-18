@@ -40,6 +40,16 @@
             height:50px;
             border-radius: 5px;
         }
+        .select2-container {
+            box-sizing: border-box;
+            display: inline-block;
+            margin: 0;
+            position: relative;
+            vertical-align: middle;
+            width: 290px;
+            border: 1px #c2cad8 solid;
+            border-radius: 3px;
+        }
     </style>
 @stop
 @section('ptitle','广告管理')
