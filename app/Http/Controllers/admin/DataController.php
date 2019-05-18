@@ -22,7 +22,8 @@ class DataController extends Controller
     }
     public function index(Request $request)
     {
-
+        echo strtotime('5/6/2019');
+        die;
         return view('admin/data/data');
     }
     public function datalist(Request $request)
