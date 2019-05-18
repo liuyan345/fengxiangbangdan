@@ -17,9 +17,9 @@ Route::post("/home/changeWd", 'home\PublicController@changeWd');
 
 
 Route::group(['prefix' => 'home','middleware'=>'HomeCommon'], function () {
-    Route::get("info", function(){
-        echo "这是渠道商后台";
-    });
+    Route::get("info", 'home\ChannelController@info');
+    Route::get("data", 'home\ChannelController@data');
+    Route::post("datalist", 'home\ChannelController@datalist');
 });
 
 
