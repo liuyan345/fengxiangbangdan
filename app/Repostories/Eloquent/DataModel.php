@@ -90,7 +90,7 @@ class DataModel extends Base
             $reader = $reader->getSheet(0);
             $datas = $reader->toArray();
         });
-        dd($datas);
+
         $packModel  = new Pack();
         $packInfo = $packModel->where("status",1)->select("pack_name","channel_id","ad_id")->get();
         $packInfo = json_decode(json_encode($packInfo),true);
@@ -107,21 +107,68 @@ class DataModel extends Base
         $channelModel = new Channel();
         $channelInfo = $channelModel->getChannelName();
 
+        $flag = true;
+        $msg = '';
         for($i = 1;$i<count($datas);$i++){
             $dataInfo = $datas[$i];
             if(!in_array($dataInfo[1],$allowPack)){
-                continue;
+                $flag = false;
+                $msg = "第".($i+1)."行，渠道包不存在";
+                break;
             }
-            $pack_name = $dataInfo[1];
-            $channelId = $packSelect[$pack_name]['channel_id'];
-            $adId = $packSelect[$pack_name]['ad_id'];
+            $pack_name = trim($dataInfo[1]);
+
+            if(strtotime($dataInfo[0]) > strtotime("today")){
+                $flag = false;
+                $msg = "第".($i+1)."行，数据日期为未来数据，不能录入";
+                break;
+            }
 
             $temp = [];
+            $temp['cdate'] = date("Y-m-d",strtotime($dataInfo[0]));
+            $temp['pack_name'] = $pack_name;
 
+            $checkInfo = $this->model->where("cdate",$temp['cdate'])->where("pack_name",$temp['pack_name'])->select("id")->first();
+            $checkInfo = json_decode(json_encode($checkInfo),true);
+            if(!empty($checkInfo['id'])){
+                $flag = false;
+                $msg = "第".($i+1)."行，数据已录入";
+                break;
+            }
+        }
+
+        if($flag){
+            for($i = 1;$i<count($datas);$i++){
+                $dataInfo = $datas[$i];
+
+                $pack_name = trim($dataInfo[1]);
+                $channelId = $packSelect[$pack_name]['channel_id'];
+                $adId = $packSelect[$pack_name]['ad_id'];
+                $temp = [];
+                $temp['cdate'] = date("Y-m-d",strtotime($dataInfo[0]));
+                $temp['pack_name'] = $pack_name;
+                $temp['channel_id'] = $channelId;
+                $temp['channel_name'] = $channelInfo[$channelId];
+                $temp['ad_id'] = $adId;
+                $temp['ad_name'] = $adInfo[$adId];
+                $temp['price'] = $dataInfo[2];
+                $temp['data'] = $dataInfo[3];
+                $temp['money'] = $dataInfo[4];
+                preg_match("/\((.*)\)/", $temp['ad_name'],$type);
+                if(empty($type[1])){
+                    $temp['type'] = "";
+                }else{
+                    $temp['type'] = $type[1];
+                }
+
+                $this->model->insert($temp);
+            }
+            return array('success' => true, 'msg' => '上传成功！');
+        }else{
+            return array('success' => false, 'msg' => $msg);
         }
 
 
-        return array('success' => true, 'msg' => '上传成功！');
 
     }
 
