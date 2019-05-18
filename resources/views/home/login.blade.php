@@ -34,14 +34,14 @@
 <body class=" login">
 <!-- BEGIN LOGO -->
 <div class="logo">
-    <a href="/admin/login"> <img src="{{ asset('/img/logo-big.png')}}" alt="" /> </a>
+    <a href="/admin/login"> <img src="{{ asset('/img/logo-big1.png')}}" alt="" /> </a>
 </div>
 <!-- END LOGO -->
 <!-- BEGIN LOGIN -->
 <div class="content">
     <!-- BEGIN LOGIN FORM -->
     <form class="login-form" action="/home/login" method="post">
-        <h3 class="form-title font-green">欢迎渠道商登录-</h3>
+        <h3 class="form-title font-green">欢迎渠道商登录</h3>
         <div class="alert alert-danger display-hide">
             <button class="close" data-close="alert"></button>
             <span> Enter any username and password. </span>
@@ -83,7 +83,7 @@
     </form>
 
 </div>
-<div class="copyright"> <?php echo date('Y');?> © </div>
+{{--<div class="copyright"> <?php echo date('Y');?> © </div>--}}
 <!--[if lt IE 9]>
 <script src="{{asset('/style_js/cpcAdmin/assets/global/plugins/respond.min.js')}}"></script>
 <script src="{{asset('/style_js/cpcAdmin/assets/global/plugins/excanvas.min.js')}}"></script>
