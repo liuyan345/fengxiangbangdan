@@ -137,13 +137,13 @@
                             </div>
                             <input type="hidden" id="start_time" name="start_time" value="" />
                         </div>
-                        {{--<div class="search_laber">--}}
-                            {{--<div class="input-group date form_datetime" data-date=""  data-date-format="yyyy-mm-dd" data-link-format="yyyy-mm-dd" data-link-field="end_time">--}}
-                            {{--<input class="form-control"  type="text" placeholder="结束日期" readonly>--}}
-                            {{--<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>--}}
-                            {{--<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>--}}
-                            {{--<input type="hidden" id="end_time" name="end_time" value="" />--}}
-                        {{--</div>--}}
+                        <div class="search_laber">
+                            <div class="input-group date form_datetime" data-date=""  data-date-format="yyyy-mm-dd" data-link-format="yyyy-mm-dd" data-link-field="end_time">
+                            <input class="form-control"  type="text" placeholder="结束日期" readonly>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                            <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                            <input type="hidden" id="end_time" name="end_time" value="" />
+                        </div>
                         <button class="btn btn-sm btn-default table-group-action-submit"><i class="fa fa-search"></i> 搜索</button>
                     </div>
                     <table class="table table-striped table-bordered table-hover table-checkable" id="datatable_orders">
