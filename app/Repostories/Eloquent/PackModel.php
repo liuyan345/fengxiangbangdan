@@ -8,6 +8,7 @@
 
 namespace App\Repostories\Eloquent;
 use App\Models\Ad;
+use App\Models\Channel;
 use App\Models\Pack;
 use Illuminate\Http\Request;
 
@@ -59,9 +60,12 @@ class PackModel extends Base
         $list       =  $this->model->select($columns)->orderBy($orderField,$orderType)->offset($start)->limit($rows)->get();
 
         $adInfo = $ad->getAdName();
+        $channel = new Channel();
+        $channelInfo = $channel->getChannelName();
 
         foreach($list as &$v){
            $v['ad_name'] = $adInfo[$v['ad_id']];
+           $v['channel_name'] = $adInfo[$v['channel_id']];
         }
 
         if(empty($list)){
