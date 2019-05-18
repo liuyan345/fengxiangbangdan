@@ -230,7 +230,7 @@
                         "sAjaxDataProp" : "data",
                         "pageLength": 10, // default record count per page
                         "ajax": {
-                            "url": "/admin/packdatalist", // ajax source
+                            "url": "/admin/pack/datalist", // ajax source
                             "type": "POST",
                             "data": function (d) {
                                 d._token = "{{csrf_token()}}";
