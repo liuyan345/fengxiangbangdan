@@ -96,8 +96,8 @@ Route::group(['prefix' => 'admin','middleware'=>'AdminCommon'], function () {
      * auther liuyan
      * 数据列表
      */
-    Route::get("data", 'admin\DataController@zf');
-    Route::post('data/datalist','admin\DataController@zfdatalist');
+    Route::get("data", 'admin\DataController@index');
+    Route::post('data/datalist','admin\DataController@datalist');
     Route::post('data/upload','admin\DataController@upload');
 
 
