@@ -317,6 +317,9 @@
 
 
         function add(pid){
+            $("#data_form").find("input[name='pack_name']").removeAttr("disabled");
+            $("#data_form").find("select[name='channel_id']").removeAttr("disabled");
+            $("#data_form").find("select[name='ad_id']").removeAttr("disabled");
             $("#form-title").html("新增菜单");
             var _token = "{{csrf_token()}}";
             var datas = '{"ad_id":"","channel_id":"","pack_name":"","status":"1","price":"0","_token":"'+_token+'"}';

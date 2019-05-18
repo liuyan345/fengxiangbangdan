@@ -293,6 +293,8 @@
 
 
         function add(pid){
+            $("#data_form").find("input[name='name']").removeAttr("disabled");
+            $("#data_form").find("select[name='type']").removeAttr("disabled");
             $("#form-title").html("新增菜单");
             var _token = "{{csrf_token()}}";
             var datas = '{"name":"","status":"1","type":"","_token":"'+_token+'"}';
@@ -308,6 +310,8 @@
                 $('#data_form')[0].reset()
                 $("#form-title").html("编辑");
                 fillField('data_form',data);
+                $("#data_form").find("input[name='name']").attr("disabled","disabled");
+                $("#data_form").find("select[name='type']").attr("disabled",'disabled');
                 $("#data_form").find("input[name='_token']").val('{{csrf_token()}}');
                 $("#stack1").modal("show");
                 url = '/admin/ad/update/'+id;
