@@ -32,7 +32,7 @@ class DataModel extends Base
             $orderField      = $_POST['columns'][$orderFieldIndex]['data'];
         }else{
             $orderType       = "desc";
-            $orderField      = "created_at";
+            $orderField      = "cdate";
         }
 
         if(!empty($request->input('start_time'))){
@@ -59,9 +59,9 @@ class DataModel extends Base
         $list       =  $this->model->select($columns)->orderBy($orderField,$orderType)->offset($start)->limit($rows)->get();
 
 
-//        foreach($list as &$v){
-//           $v['cate_name'] = $cateInfo[$v['cate_id']];
-//        }
+        foreach($list as &$v){
+           $v['cdate'] = substr($v['cdate'],0,10);
+        }
 
         if(empty($list)){
             $list = array();

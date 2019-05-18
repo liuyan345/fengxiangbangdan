@@ -129,14 +129,14 @@
                         <input type="text" class="form-control input-inline" style="margin-right: 8px;" placeholder="渠道名称" id="channel_name">
                         <input type="text" class="form-control input-inline" style="margin-right: 8px;" placeholder="渠道包" id="pack_name">
 
-                        {{--<div class="search_laber">--}}
-                            {{--<div class="input-group date form_datetime" data-date=""  data-date-format="yyyy-mm-dd" data-link-format="yyyy-mm-dd" data-link-field="start_time">--}}
-                                {{--<input class="form-control" type="text" placeholder="开始日期" readonly>--}}
-                                {{--<span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>--}}
-                                {{--<span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>--}}
-                            {{--</div>--}}
-                            {{--<input type="hidden" id="start_time" name="start_time" value="" />--}}
-                        {{--</div>--}}
+                        <div class="search_laber">
+                            <div class="input-group date form_datetime" data-date=""  data-date-format="yyyy-mm-dd" data-link-format="yyyy-mm-dd" data-link-field="start_time">
+                                <input class="form-control" type="text" placeholder="开始日期" readonly>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                            </div>
+                            <input type="hidden" id="start_time" name="start_time" value="" />
+                        </div>
                         {{--<div class="search_laber">--}}
                             {{--<div class="input-group date form_datetime" data-date=""  data-date-format="yyyy-mm-dd" data-link-format="yyyy-mm-dd" data-link-field="end_time">--}}
                             {{--<input class="form-control"  type="text" placeholder="结束日期" readonly>--}}
