@@ -43,7 +43,7 @@
             <!-- BEGIN LOGO -->
             <div class="page-logo">
                 <a href="/admin/adminPlat">
-                    <img src="{{asset('/style_js/cpcAdmin/assets/layouts/layout/img/logo.png')}}" alt="logo" class="logo-default" /> </a>
+                    <img src="{{asset('/img/logo1.png')}}" alt="logo" class="logo-default" /> </a>
                 <div class="menu-toggler sidebar-toggler">
                     <span></span>
                 </div>
@@ -102,27 +102,10 @@
                             <span class="title">公司信息</span>
                             <span class="arrow"></span>
                         </a>
-                        {{--<ul class="sub-menu">--}}
-                            {{--<li class="nav-item  ">--}}
-                                {{--<a href="/home/info" class="nav-link ">--}}
-                                    {{--<span class="title"> 栏目管理</span>--}}
-                                {{--</a>--}}
-                            {{--</li>--}}
-                            {{--<li class="nav-item  ">--}}
-                                {{--<a href="/admin/role" class="nav-link ">--}}
-                                    {{--<span class="title"> 角色管理</span>--}}
-                                {{--</a>--}}
-                            {{--</li>--}}
-                            {{--<li class="nav-item  ">--}}
-                                {{--<a href="/admin/admin" class="nav-link ">--}}
-                                    {{--<span class="title"> 管理员管理</span>--}}
-                                {{--</a>--}}
-                            {{--</li>--}}
-                        {{--</ul>--}}
                     </li>
                     <li class="nav-item  ">
                         <a href="/home/data" class="nav-link nav-toggle">
-                            <i class="icon-settings"></i>
+                            <i class="icon-book-open"></i>
                             <span class="title">数据列表</span>
                             <span class="arrow"></span>
                         </a>
