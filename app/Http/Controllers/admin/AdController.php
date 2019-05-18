@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\admin;
 /**
  * auther 刘岩
- * 渠道控制器
+ * 广告控制器
  * */
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Repostories\Eloquent\ChannelModel as Actor;
+use App\Repostories\Eloquent\AdModel as Actor;
 
-class ChannelController extends Controller{
+class AdController extends Controller{
     private $actor;
 
     public function __construct(Actor $actor){
@@ -17,7 +17,7 @@ class ChannelController extends Controller{
     }
 
     public function index(){
-        return view('admin/channel/index');
+        return view('admin/ad/ad');
     }
 
     public function datalist(Request $request){
@@ -27,7 +27,6 @@ class ChannelController extends Controller{
     }
 
     public function store(Request $request){
-        $_POST['asepasswd'] = getmd5passwd($_POST['passwd']);
         $condition['name'] = $request['name'];
         $data = $this->actor->store($request,$condition);
         return response()->json($data);
@@ -40,7 +39,6 @@ class ChannelController extends Controller{
     }
 
     public function update($id,Request $request){
-        $_POST['asepasswd'] = getmd5passwd($_POST['passwd']);
         $res = $this->actor->update($request,$id);
         return response()->json($res);
     }
