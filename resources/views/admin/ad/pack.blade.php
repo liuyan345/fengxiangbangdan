@@ -328,7 +328,7 @@
 
         //编辑框初始化 设置url
         function edit(id){
-            $.get('/admin/packedit/'+id,function(data){
+            $.get('/admin/pack/edit/'+id,function(data){
                 $('#data_form')[0].reset()
                 $("#form-title").html("编辑");
                 fillField('data_form',data);

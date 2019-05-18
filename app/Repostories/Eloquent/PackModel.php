@@ -65,7 +65,7 @@ class PackModel extends Base
 
         foreach($list as &$v){
            $v['ad_name'] = $adInfo[$v['ad_id']];
-           $v['channel_name'] = $adInfo[$v['channel_id']];
+           $v['channel_name'] = $channelInfo[$v['channel_id']];
         }
 
         if(empty($list)){
