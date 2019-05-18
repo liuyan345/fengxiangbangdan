@@ -17,13 +17,31 @@ class Ad extends Model
     protected $guarded = [];
 
 
-    public function getAdName ($id = []){
-        if(empty($id)){
-            $info = $this->pluck("name","id");
-        }else{
-            $info = $this->whereIn('id',$id)->pluck("name","id");
+    public function getAdName ($id = [],$status = ''){
+        $model = $this;
+        if(!empty($id)){
+            $model = $model->whereIn("id",$id);
         }
-        return json_decode(json_encode($info),true);
+        if(!empty($status)){
+            $model = $model->where("status",$status);
+        }
+
+        $info = $model->select("name","id","type")->get();
+
+        $info = json_decode(json_encode($info),true);
+        $newInfo  = [];
+        foreach ($info as $v){
+            if($v['type'] == 1){
+                $v['type'] = 'ios';
+            }else if($v['type'] == 2){
+                $v['type'] = 'android';
+            }else{
+                $v['type'] = '未知';
+            }
+            $newInfo[$v['id']] = $v['name'].'('.$v['type'].')';
+        }
+
+        return $newInfo;
     }
 
 }

@@ -1,7 +1,7 @@
 @extends('admin.public')
 @section('style')
-    <link href="{{asset('/style_js/cpcAdmin/assets/global/plugins/bootstrap-select/css/bootstrap-select.min.css')}}"
-          rel="stylesheet" type="text/css"/>
+    <link href="{{asset('/style_js/cpcAdmin/assets/global/plugins/bootstrap-select/css/bootstrap-select.min.css')}}" rel="stylesheet" type="text/css"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
     <style>
         .search_laber {
             float: left;
@@ -44,7 +44,7 @@
 @stop
 @section('ptitle','广告管理')
 
-@section('title','广告列表')
+@section('title','渠道包列表')
 
 @section('content')
     <div class="portlet-body">
@@ -53,7 +53,7 @@
             <div class="portlet-title">
                 <div class="caption">
                     <i class="icon-settings font-green"></i>
-                    <span class="caption-subject font-green sbold uppercase">广告列表 </span>
+                    <span class="caption-subject font-green sbold uppercase">渠道包列表 </span>
                 </div>
                 <div class="actions">
                     <div class="btn-group btn-group-devided" data-toggle="buttons">
@@ -66,16 +66,12 @@
             <div class="portlet-body">
                 <div class="table-container">
                     <div class="table-actions-wrapper">
-                        <input type="text" class="form-control input-inline" style="margin-right: 8px;" placeholder="广告名称" id="name">
+                        <input type="text" class="form-control input-inline" style="margin-right: 8px;" placeholder="广告名称" id="ad_name">
+                        <input type="text" class="form-control input-inline" style="margin-right: 8px;" placeholder="渠道包名" id="pack_name">
                         <select class="bs-select form-control" id="status" style="margin-right: 8px;width:118px;float: left">
-                            <option value="">状态</option>
+                            <option value="">渠道包状态</option>
                             <option value="1">正常</option>
                             <option value="2">禁用</option>
-                        </select>
-                        <select class="bs-select form-control" id="type" style="margin-right: 8px;width:118px;float: left">
-                            <option value="">类型</option>
-                            <option value="1">ios</option>
-                            <option value="2">android</option>
                         </select>
                         <button class="btn btn-sm btn-default table-group-action-submit"><i class="fa fa-search"></i> 搜索</button>
                     </div>
@@ -84,7 +80,9 @@
                         <tr role="row" class="heading">
                             <th width="5%">ID</th>
                             <th width="7%">广告名称</th>
-                            <th width="10%">类型</th>
+                            <th width="10%">渠道包名</th>
+                            <th width="10%">渠道名称</th>
+                            <th width="10%">单价</th>
                             <th width="7%">状态</th>
                             <th width="10%">操作</th>
                         </tr>
@@ -110,20 +108,38 @@
                             <div class="form-body">
                                 <input type="hidden" name="_token" value="{{csrf_token()}}">
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">广告名称</label>
+                                    <label class="col-md-3 control-label">所属广告</label>
                                     <div class="col-md-6">
-                                        <input type="text" class="form-control" name="name" placeholder="">
+                                        <select class="js-example-basic-single form-control" name="ad_id">
+                                            <option value="">-请选择-</option>
+                                            @foreach($adInfo as $k=>$v)
+                                                <option value="{{$k}}">{{$v}}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">渠道包名</label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" name="pack_name" placeholder="渠道包名">
                                     </div>
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-md-3 control-label">类型</label>
+                                    <label class="col-md-3 control-label">所属渠道</label>
                                     <div class="col-md-6">
-                                        <select name="type" class="form-control">
+                                        <select class="js-example-basic-single form-control" name="channel_id">
                                             <option value="">-请选择-</option>
-                                            <option value="1">ios</option>
-                                            <option value="2">android</option>
+                                            @foreach($channelInfo as $k1=>$v1)
+                                                <option value="{{$k1}}">{{$v1}}</option>
+                                            @endforeach
                                         </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">单价</label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" name="price" placeholder="单位：元">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -165,11 +181,14 @@
     <script src="{{asset('/style_js/cpcAdmin/assets/global/plugins/datatables/plugins/bootstrap/datatables.bootstrap.js')}}" type="text/javascript"></script>
     <script src="{{asset('/style_js/cpcAdmin/assets/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}" type="text/javascript"></script>
     <script src="{{asset('/style_js/cpcAdmin/assets/pages/scripts/table-datatables-editable.min.js')}}" type="text/javascript"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
 @stop
 
 @section('page_javascript')
     <script>
+        $(document).ready(function() {
+            $('.js-example-basic-single').select2();
+        });
         var url;
         var check = true;
         var toastr = {};
@@ -211,13 +230,13 @@
                         "sAjaxDataProp" : "data",
                         "pageLength": 10, // default record count per page
                         "ajax": {
-                            "url": "/admin/ad/datalist", // ajax source
+                            "url": "/admin/packdatalist", // ajax source
                             "type": "POST",
                             "data": function (d) {
                                 d._token = "{{csrf_token()}}";
-                                d.name = $("#name").val();
+                                d.ad_name = $("#ad_name").val();
                                 d.status = $("#status").val();
-                                d.type = $("#type").val();
+                                d.pack_name = $("#pack_name").val();
                             }
                         },
                         'sort': false,
@@ -237,15 +256,10 @@
                         },
                         'aoColumns':[
                             {'mData':'id'},
-                            {'mData':'name'},
-
-                            {'mData':function(lineData){
-                                if(lineData.type == 1){
-                                    return "ios";
-                                }else if(lineData.type == 2){
-                                    return "android"
-                                }
-                            }},
+                            {'mData':'ad_name'},
+                            {'mData':'pack_name'},
+                            {'mData':'channel_name'},
+                            {'mData':'price'},
                             {'mData':function(lineData){
                                 if(lineData.status == 1){
                                     return "<span style='color:green'>正常</span>";
@@ -295,22 +309,22 @@
         function add(pid){
             $("#form-title").html("新增菜单");
             var _token = "{{csrf_token()}}";
-            var datas = '{"name":"","status":"1","type":"","_token":"'+_token+'"}';
+            var datas = '{"ad_id":"","channel_id":"","pack_name":"","status":"1","price":"0","_token":"'+_token+'"}';
             var datas = eval('('+datas+')');
             fillField('data_form',datas);     //自定义的表单数据填充函数
             $("#stack1").modal("show");
-            url = '/admin/ad';
+            url = '/admin/pack';
         }
 
         //编辑框初始化 设置url
         function edit(id){
-            $.get('/admin/ad/edit/'+id,function(data){
+            $.get('/admin/packedit/'+id,function(data){
                 $('#data_form')[0].reset()
                 $("#form-title").html("编辑");
                 fillField('data_form',data);
                 $("#data_form").find("input[name='_token']").val('{{csrf_token()}}');
                 $("#stack1").modal("show");
-                url = '/admin/ad/update/'+id;
+                url = '/admin/pack/update/'+id;
             },'json')
         }
 
