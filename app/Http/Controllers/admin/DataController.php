@@ -41,6 +41,10 @@ class DataController extends Controller
 
     }
 
+    public function download(){
+        $this->actor->download();
+    }
+
 
 
 

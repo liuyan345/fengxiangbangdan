@@ -168,11 +168,35 @@ class DataModel extends Base
             return array('success' => false, 'msg' => $msg);
         }
 
-
-
     }
 
+    // 下载模板
+    public function download(){
+        ob_end_clean(); // 解决中文乱码问题
+        $cellData = [
+            ['a'=>'日期','b'=>'渠道包名称','c'=>'单价','d'=>"注册数",'e'=>'收益'], // 这里可以不注释 直接写到数据里面去 但是为了单独的设置表头 可以拿出来单独写入
+            ['a'=>'2019/5/1','b'=>'fndexiaonx','c'=>'1.2','d'=>'2156','2587.2'],
+            ['a'=>'2019/5/1','b'=>'fndexiaonx','c'=>'1.2','d'=>'2156','2587.2'],
+            ['a'=>'2019/5/1','b'=>'fndexiaonx','c'=>'1.2','d'=>'2156','2587.2'],
+            ['a'=>'2019/5/1','b'=>'fndexiaonx','c'=>'1.2','d'=>'2156','2587.2'],
+            ['a'=>'2019/5/1','b'=>'fndexiaonx','c'=>'1.2','d'=>'2156','2587.2'],
+            ['a'=>'2019/5/1','b'=>'fndexiaonx','c'=>'1.2','d'=>'2156','2587.2'],
+            ['a'=>'2019/5/1','b'=>'fndexiaonx','c'=>'1.2','d'=>'2156','2587.2'],
+            ['a'=>'2019/5/1','b'=>'fndexiaonx','c'=>'1.2','d'=>'2156','2587.2'],
+        ];
 
+        Excel::create("模板",function($excel) use ($cellData){
+            $excel->sheet('model', function($sheet) use ($cellData){
+                foreach ($cellData as $k=>$val){
+                    $sheet->cell('A'.($k+1),$val['a']);// 写入单个单元格的数据
+                    $sheet->cell('B'.($k+1),$val['b']);
+                    $sheet->cell('C'.($k+1),$val['c']);
+                    $sheet->cell('D'.($k+1),$val['d']);
+                    $sheet->cell('E'.($k+1),$val['e']);
+                }
+            });
+        })->export('xls');
+    }
 
 
 
