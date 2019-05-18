@@ -81,9 +81,7 @@
         {{--</div>--}}
 
     </form>
-
 </div>
-{{--<div class="copyright"> <?php echo date('Y');?> © </div>--}}
 <!--[if lt IE 9]>
 <script src="{{asset('/style_js/cpcAdmin/assets/global/plugins/respond.min.js')}}"></script>
 <script src="{{asset('/style_js/cpcAdmin/assets/global/plugins/excanvas.min.js')}}"></script>
