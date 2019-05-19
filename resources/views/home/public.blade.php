@@ -104,6 +104,13 @@
                         </a>
                     </li>
                     <li class="nav-item  ">
+                        <a href="/home/changePw" class="nav-link nav-toggle">
+                            <i class="icon-settings"></i>
+                            <span class="title">修改密码</span>
+                            <span class="arrow"></span>
+                        </a>
+                    </li>
+                    <li class="nav-item  ">
                         <a href="/home/data" class="nav-link nav-toggle">
                             <i class="icon-book-open"></i>
                             <span class="title">数据列表</span>
