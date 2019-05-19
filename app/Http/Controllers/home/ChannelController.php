@@ -17,6 +17,9 @@ class ChannelController extends Controller{
     }
 
     public function info(){
+        $channelInfo = session('home')->get();
+
+        var_dump($channelInfo);die;
         return view('home/info');
     }
 
