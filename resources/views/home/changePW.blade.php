@@ -2,7 +2,7 @@
 auther 刘岩
 后台首页页面
 --}}
-@extends('admin.public')
+@extends('home.public')
 @section('style')
 
 
