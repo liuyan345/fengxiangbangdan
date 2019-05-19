@@ -94,7 +94,7 @@ class ChannelController extends Controller{
 
     public function changePw(Request $request){
         $channelInfo =  $request->session()->get('home');
-        return view('home/changePw',['adminInfo'=>$channelInfo]);
+        return view('home/changePW',['adminInfo'=>$channelInfo]);
     }
 
     public function edit($id,Request $request){
