@@ -29,7 +29,7 @@ auther 刘岩
                         <div class="form-group">
                             <label class="col-md-3 control-label">渠道名称</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control"  disabled="disabled" value="{{$adminInfo['admin_name']}}">
+                                <input type="text" class="form-control"  disabled="disabled" value="{{$adminInfo['name']}}">
                             </div>
                         </div>
                         <div class="form-group">
