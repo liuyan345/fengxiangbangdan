@@ -16,8 +16,8 @@ class ChannelController extends Controller{
         $this->actor = $actor;
     }
 
-    public function info(){
-        $channelInfo = session('home')->get();
+    public function info(Request $request){
+        $channelInfo =  $request->session()->get('home');
 
         var_dump($channelInfo);die;
         return view('home/info');
