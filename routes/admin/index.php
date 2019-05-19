@@ -22,7 +22,7 @@ Route::group(['prefix' => 'home','middleware'=>'HomeCommon'], function () {
     Route::get("data", 'home\ChannelController@data');
     Route::post("datalist", 'home\ChannelController@datalist');
     Route::get("changePw", 'home\ChannelController@changePw');
-    Route::post("changeWd", 'home\PublicController@changePw');
+    Route::post("changeWd", 'home\PublicController@changeWd');
 });
 
 
