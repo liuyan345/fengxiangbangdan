@@ -71,7 +71,7 @@ class PublicController extends Controller
             if($res){
                 $result = array('success'=>true,'msg'=>'修改成功！');
                 $adminInfo['passwd'] = $data['passwd'];
-                $adminInfo['password'] = $data['password'];
+                $adminInfo['asepasswd'] = $data['asepasswd'];
                 $request->session()->put('home',$adminInfo);
 
             }else{
