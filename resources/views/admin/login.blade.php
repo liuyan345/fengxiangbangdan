@@ -34,7 +34,7 @@
 <body class=" login">
 <!-- BEGIN LOGO -->
 <div class="logo">
-    <a href="/admin/login"> <img src="{{ asset('/img/logo-big.png')}}" alt="" /> </a>
+    <a href="/admin/login"> <img src="{{ asset('/img/logo-big2.png')}}" alt="" /> </a>
 </div>
 <!-- END LOGO -->
 <!-- BEGIN LOGIN -->
