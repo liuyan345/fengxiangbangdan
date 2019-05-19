@@ -25,7 +25,7 @@ auther 刘岩
                 <form action="#" class="form-horizontal" id="data_form">
                     <div class="form-body">
                         <input type="hidden" name="_token" value="{{csrf_token()}}">
-                        <input type="hidden" name="id" value="{{$channelInfo['id']}}">
+                        <input type="hidden" id="channelId" value="{{$channelInfo['id']}}">
                         <div class="form-group">
                             <label class="col-md-3 control-label">渠道商名称</label>
                             <div class="col-md-6">
@@ -102,12 +102,12 @@ auther 刘岩
                 "hideMethod": "fadeOut"
             }
             var postData = $("#data_form").serializeArray();
-
+            var channelId = $("#channelId").val();
             var required = ['linkman','linkmanMobile'];
             var result   = verify(required,postData);
             if(result){
                 App.blockUI({animate: true});
-                $.post('/home/info', postData, function (data) {
+                $.post('/home/info/'+channelId, postData, function (data) {
                     App.unblockUI();
                     if (data.success) {
                         toastr.success(data.msg, "提示")

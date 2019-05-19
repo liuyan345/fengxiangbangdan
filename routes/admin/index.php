@@ -18,7 +18,7 @@ Route::post("/home/changeWd", 'home\PublicController@changeWd');
 
 Route::group(['prefix' => 'home','middleware'=>'HomeCommon'], function () {
     Route::get("info", 'home\ChannelController@info');
-    Route::post("info", 'home\ChannelController@update');
+    Route::post("info/{id}", 'home\ChannelController@update');
     Route::get("data", 'home\ChannelController@data');
     Route::post("datalist", 'home\ChannelController@datalist');
 });
