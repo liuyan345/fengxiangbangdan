@@ -7,9 +7,9 @@ auther 刘岩
 
 
 @stop
-@section('ptitle','个人信息')
+@section('ptitle','渠道商信息')
 
-@section('title','个人信息')
+@section('title','渠道商信息')
 
 @section('content')
     <div class="portlet-body">
@@ -17,7 +17,7 @@ auther 刘岩
             <div class="portlet-title">
                 <div class="caption">
                     <i class="icon-settings font-green"></i>
-                    <span class="caption-subject font-green sbold uppercase">个人信息</span>
+                    <span class="caption-subject font-green sbold uppercase">渠道商信息</span>
                 </div>
 
             </div>
@@ -25,29 +25,41 @@ auther 刘岩
                 <form action="#" class="form-horizontal" id="data_form">
                     <div class="form-body">
                         <input type="hidden" name="_token" value="{{csrf_token()}}">
-                        <input type="hidden" name="id" value="{{$adminInfo['id']}}">
+                        <input type="hidden" name="id" value="{{$channelInfo['id']}}">
                         <div class="form-group">
-                            <label class="col-md-3 control-label">账户名</label>
+                            <label class="col-md-3 control-label">渠道商名称</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control"  disabled="disabled" value="{{$adminInfo['admin_name']}}">
+                                <input type="text" class="form-control"  disabled="disabled" value="{{$channelInfo['name']}}">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-3 control-label">原密码<span class="required">*</span></label>
+                            <label class="col-md-3 control-label">联系人<span class="required">*</span></label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" id="old" name="old">
+                                <input type="text" class="form-control" name="linkman" @if(!empty($channelInfo['linkman'])) value="{{$channelInfo['linkman']}}" @endif>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-3 control-label">新密码<span class="required">*</span></label>
+                            <label class="col-md-3 control-label">联系人手机号<span class="required">*</span></label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" id="new" name="new">
+                                <input type="text" class="form-control" name="linkmanMobile" @if(!empty($channelInfo['linkmanMobile'])) value="{{$channelInfo['linkmanMobile']}}" @endif>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-md-3 control-label">重复新密码<span class="required">*</span></label>
+                            <label class="col-md-3 control-label">联系人qq</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" id="renew" name="renew">
+                                <input type="text" class="form-control" name="qq" @if(!empty($channelInfo['qq'])) value="{{$channelInfo['qq']}}" @endif>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">联系人邮箱</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="email" @if(!empty($channelInfo['email'])) value="{{$channelInfo['email']}}" @endif>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">地区</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="area" @if(!empty($channelInfo['area'])) value="{{$channelInfo['area']}}" @endif>
                             </div>
                         </div>
 
@@ -89,26 +101,14 @@ auther 刘岩
                 "showMethod": "fadeIn",
                 "hideMethod": "fadeOut"
             }
-            postData = $("#data_form").serializeArray();
+            var postData = $("#data_form").serializeArray();
 
-            var required = ['old','new','renew'];
-            var newPw = $("#new").val();
-            var renewPw = $("#renew").val();
-            if(newPw != renewPw){
-                toastr.warning('提交失败，两次新密码不同！', "提示")
-                return false;
-            }
-
+            var required = ['linkman','linkmanMobile'];
             var result   = verify(required,postData);
-
             if(result){
-                App.blockUI({
-                    target: '.portlet-body',
-                    animate: true
-                });
-
+                App.blockUI({animate: true});
                 $.post('/home/info', postData, function (data) {
-                    App.unblockUI('.portlet-body');
+                    App.unblockUI();
                     if (data.success) {
                         toastr.success(data.msg, "提示")
                        window.location.reload();

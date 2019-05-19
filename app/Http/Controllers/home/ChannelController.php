@@ -18,9 +18,7 @@ class ChannelController extends Controller{
 
     public function info(Request $request){
         $channelInfo =  $request->session()->get('home');
-
-        var_dump($channelInfo);die;
-        return view('home/info');
+        return view('home/info',['channelInfo'=>$channelInfo]);
     }
 
     public function datalist(Request $request){
@@ -43,7 +41,6 @@ class ChannelController extends Controller{
     }
 
     public function update($id,Request $request){
-        $_POST['asepasswd'] = getmd5passwd($_POST['passwd']);
         $res = $this->actor->update($request,$id);
         return response()->json($res);
     }
