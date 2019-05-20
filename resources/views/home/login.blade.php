@@ -70,6 +70,7 @@
     </form>
     <!-- BEGIN REGISTRATION FORM -->
     <form class="register-form" action="/home/channelAdd" method="post">
+        <input type="hidden" name="_token" value="{{csrf_token()}}">
         <h3 class="font-green">欢迎渠道商注册</h3>
         {{--<p class="hint"> Enter your personal details below: </p>--}}
         <div class="form-group">
