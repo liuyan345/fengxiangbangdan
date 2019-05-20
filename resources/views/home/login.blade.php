@@ -75,26 +75,26 @@
         {{--<p class="hint"> Enter your personal details below: </p>--}}
         <div class="form-group">
             <label class="control-label visible-ie8 visible-ie9">渠道名称（公司名称）</label>
-            <input class="form-control placeholder-no-fix" type="text" placeholder="例：北京xx有限责任公司" name="name" /> </div>
+            <input class="form-control placeholder-no-fix" type="text" placeholder="渠道名称（公司名称）" name="name" /> </div>
         <div class="form-group">
             <label class="control-label visible-ie8 visible-ie9">密码</label>
-            <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="Password" name="passwd" /> </div>
+            <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="密码" name="passwd" /> </div>
         <div class="form-group">
             <!--ie8, ie9 does not support html5 placeholder, so we just show field title for that-->
             <label class="control-label visible-ie8 visible-ie9">联系人</label>
-            <input class="form-control placeholder-no-fix" type="text" placeholder="例：王小姐" name="linkman" /> </div>
+            <input class="form-control placeholder-no-fix" type="text" placeholder="联系人" name="linkman" /> </div>
         <div class="form-group">
             <label class="control-label visible-ie8 visible-ie9">联系人电话</label>
-            <input class="form-control placeholder-no-fix" type="text" placeholder="例：135xxxx1124" name="linkmanMobile" /> </div>
+            <input class="form-control placeholder-no-fix" type="text" placeholder="联系人电话" name="linkmanMobile" /> </div>
         <div class="form-group">
             <label class="control-label visible-ie8 visible-ie9">联系人qq</label>
-            <input class="form-control placeholder-no-fix" type="text" placeholder="例：123456" name="qq" /> </div>
+            <input class="form-control placeholder-no-fix" type="text" placeholder="联系人qq" name="qq" /> </div>
         <div class="form-group">
             <label class="control-label visible-ie8 visible-ie9">联系人邮箱</label>
-            <input class="form-control placeholder-no-fix" type="text"  name="email" /> </div>
+            <input class="form-control placeholder-no-fix" type="text" placeholder="联系人邮箱" name="email" /> </div>
         <div class="form-group">
             <label class="control-label visible-ie8 visible-ie9">区域</label>
-            <input class="form-control placeholder-no-fix" type="text" placeholder="例：北京" name="area" /> </div>
+            <input class="form-control placeholder-no-fix" type="text" placeholder="区域" name="area" /> </div>
 
         <div class="form-actions">
             <button type="button" id="register-back-btn" class="btn green btn-outline">返回</button>
