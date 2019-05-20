@@ -12,7 +12,7 @@ Route::get('/nopower', function(){
 
 Route::get('/home/login', 'home\PublicController@login');
 Route::post('/home/login', 'home\PublicController@checklogin');
-Route::post('/home/logout', 'home\PublicController@logout');
+Route::get('/home/logout', 'home\PublicController@logout');
 Route::post("/home/changeWd", 'home\PublicController@changeWd');
 Route::post("/home/channelAdd", 'home\PublicController@channelAdd');
 
