@@ -90,6 +90,13 @@ class PublicController extends Controller
         $_POST['asepasswd'] = getmd5passwd($_POST['passwd']);
         $condition['name'] = $request['name'];
         $data = $this->store($request,$condition);
+        if(empty($_POST['name'])){
+            return redirect('/home/login')->with('message', array('type' => 'fail','content'=>'渠道名不能为空'));
+        }
+        if(empty($_POST['passwd'])){
+            return redirect('/home/login')->with('message', array('type' => 'fail','content'=>'密码不能为空'));
+        }
+
         if($data['success']){
             $admin = new Channel();
             $adminInfo = $admin->select('*')->where('name',$request['name'])->first();
