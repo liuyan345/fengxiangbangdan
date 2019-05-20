@@ -152,7 +152,17 @@
         toastr.warning('{{Session::get('message')['content']}}', "提示")
     @endif
 
-$("body").keydown(function(){
+    $('#register-btn').click(function() {
+        $('.login-form').hide();
+        $('.register-form').show();
+    });
+
+    $('#register-back-btn').click(function() {
+        $('.login-form').show();
+        $('.register-form').hide();
+    });
+
+    $("body").keydown(function(){
         //keyCode=13是回车键
         if (event.keyCode == "13") {
             $("#form_submit").click();
