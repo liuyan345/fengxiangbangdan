@@ -85,4 +85,63 @@ class PublicController extends Controller
 
     }
 
+    // 添加新的渠道
+    public function channelAdd(Request $request){
+        $_POST['asepasswd'] = getmd5passwd($_POST['passwd']);
+        $condition['name'] = $request['name'];
+        $data = $this->store($request,$condition);
+        if($data['success']){
+            $admin = new Channel();
+            $adminInfo = $admin->select('*')->where('name',$request['name'])->first();
+            if(empty($adminInfo)){
+                return redirect('/home/login')->with('message', array('type' => 'fail','content'=>'注册失败，请重新注册'));
+            }else{
+                $adminInfo = $adminInfo->toArray();
+
+                $adminInfo['logintime'] = time();
+
+                $request->session()->put('home', $adminInfo);
+
+                return redirect('/home/info');
+            }
+        }else{
+            return redirect('/home/login')->with('message', array('type' => 'fail','content'=>'注册失败，请重新注册'));
+        }
+    }
+
+    public function store($request,$condition = array(),$id = null){
+        $model = new Channel();
+        if(empty($id)){
+            $id = 'id';
+        }
+
+        if(!empty($condition)){
+            $info = $model->where($condition)->select($id)->first();
+        }else{
+            $info = array();
+        }
+
+        if($info){
+            $result = array('success'=>false,'msg'=>'添加失败!此条目已存在!!!');
+        }else{
+
+            if(!empty($_POST['_token'])){
+                unset($_POST['_token']);
+            }
+            foreach($_POST as &$v){
+                if(is_string($v)){
+                    $v = trim($v);
+                }
+            }
+            $res = $model->insertGetId($_POST);
+
+            if($res){
+                $result = array('success'=>true,'msg'=>'添加成功!!','id'=>$res);
+            }else{
+                $result = array('success'=>false,'msg'=>'添加失败!!');
+            }
+        }
+        return $result;
+    }
+
 }
