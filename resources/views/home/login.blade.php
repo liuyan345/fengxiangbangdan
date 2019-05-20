@@ -62,6 +62,11 @@
             {{--</label>--}}
             {{--<a href="javascript:;" id="forget-password" class="forget-password">忘记密码?</a>--}}
         </div>
+        <div class="create-account">
+            <p>
+                <a href="javascript:;" id="register-btn" class="uppercase">注册新渠道商</a>
+            </p>
+        </div>
         {{--<div class="login-options">--}}
             {{--<h4>Or login with</h4>--}}
             {{--<ul class="social-icons">--}}
