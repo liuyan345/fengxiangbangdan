@@ -62,7 +62,18 @@ auther 刘岩
                                 <input type="text" class="form-control" name="area" @if(!empty($channelInfo['area'])) value="{{$channelInfo['area']}}" @endif>
                             </div>
                         </div>
-
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">渠道类型</label>
+                            <div class="col-md-6">
+                                <select name="type">
+                                    <option value="">-请选择-</option>
+                                    <option value="1" @if(!empty($channelInfo['type']) && $channelInfo['type'] == 1) selected="selected" @endif>wap</option>
+                                    <option value="2" @if(!empty($channelInfo['type']) && $channelInfo['type'] == 2) selected="selected" @endif>应用市场</option>
+                                    <option value="3" @if(!empty($channelInfo['type']) && $channelInfo['type'] == 3) selected="selected" @endif>APP</option>
+                                    <option value="4" @if(!empty($channelInfo['type']) && $channelInfo['type'] == 4) selected="selected" @endif>其他</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="form-actions top">

@@ -95,6 +95,16 @@
         <div class="form-group">
             <label class="control-label visible-ie8 visible-ie9">区域</label>
             <input class="form-control placeholder-no-fix" type="text" placeholder="区域" name="area" /> </div>
+        <div class="form-group">
+            <label class="control-label visible-ie8 visible-ie9">渠道类型</label>
+            <select name="type">
+                <option value="">渠道类型</option>
+                <option value="1">wap</option>
+                <option value="2">应用市场</option>
+                <option value="3">APP</option>
+                <option value="4">其他</option>
+            </select>
+        </div>
 
         <div class="form-actions">
             <button type="button" id="register-back-btn" class="btn green btn-outline">返回</button>

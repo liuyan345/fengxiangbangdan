@@ -155,6 +155,9 @@
                                         <select name="type" class="form-control">
                                             <option value="">-请选择-</option>
                                             <option value="1">wap</option>
+                                            <option value="2">应用市场</option>
+                                            <option value="3">APP</option>
+                                            <option value="4">其他</option>
                                         </select>
                                     </div>
                                 </div>
@@ -273,6 +276,12 @@
                             {'mData':function(lineData){
                                 if(lineData.type == 1){
                                     return "wap";
+                                }else if(lineData.type == 2){
+                                    return "应用市场";
+                                }else if(lineData.type == 3){
+                                    return "APP";
+                                }else if(lineData.type == 4){
+                                    return "其他";
                                 }
                             }},
                             {'mData':function(lineData){
