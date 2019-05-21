@@ -65,7 +65,7 @@ auther 刘岩
                         <div class="form-group">
                             <label class="col-md-3 control-label">渠道类型</label>
                             <div class="col-md-6">
-                                <select name="type">
+                                <select name="type" class="form-control">
                                     <option value="">-请选择-</option>
                                     <option value="1" @if(!empty($channelInfo['type']) && $channelInfo['type'] == 1) selected="selected" @endif>wap</option>
                                     <option value="2" @if(!empty($channelInfo['type']) && $channelInfo['type'] == 2) selected="selected" @endif>应用市场</option>

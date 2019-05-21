@@ -97,7 +97,7 @@
             <input class="form-control placeholder-no-fix" type="text" placeholder="区域" name="area" /> </div>
         <div class="form-group">
             <label class="control-label visible-ie8 visible-ie9">渠道类型</label>
-            <select name="type">
+            <select name="type" class="form-control">
                 <option value="">渠道类型</option>
                 <option value="1">wap</option>
                 <option value="2">应用市场</option>
