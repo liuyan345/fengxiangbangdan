@@ -282,6 +282,8 @@
                                     return "APP";
                                 }else if(lineData.type == 4){
                                     return "其他";
+                                }else{
+                                    return "未填写"
                                 }
                             }},
                             {'mData':function(lineData){
