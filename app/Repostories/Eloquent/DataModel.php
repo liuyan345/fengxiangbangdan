@@ -91,6 +91,7 @@ class DataModel extends Base
         $footer['price'] = "";
         $footer['ad_company'] = "";
         $footer['channel_company'] = "";
+        $footer['money'] = round($footer['money'],2);
         $list[] = $footer;
 
         $result = array(
