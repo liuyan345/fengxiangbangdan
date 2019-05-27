@@ -83,6 +83,8 @@ Route::group(['prefix' => 'admin','middleware'=>'AdminCommon'], function () {
     Route::post('channel/datalist','admin\ChannelController@datalist');
     Route::get('channel/edit/{id}', 'admin\ChannelController@edit');
     Route::post('channel/update/{id}', 'admin\ChannelController@update');
+    Route::post('channel/update/{id}', 'admin\ChannelController@update');
+    Route::post('channel/delete/{id}', 'admin\ChannelController@delete');
 
     /**
      * auther  刘岩
