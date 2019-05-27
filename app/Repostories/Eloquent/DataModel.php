@@ -192,6 +192,7 @@ class DataModel extends Base
                 $temp['price'] = $dataInfo[2];
                 $temp['data'] = $dataInfo[3];
                 $temp['money'] = $dataInfo[4];
+                $temp['created_at'] = date("Y-m-d H:i:s");
 
                 $this->model->insert($temp);
             }
