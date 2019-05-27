@@ -292,8 +292,8 @@
                             {'mData':'money'},
                         ],
                         "footerCallback":function(tfoot,data,start,end,display){
-                            console.log(tfoot);
-                            console.log(data);
+                            var api = this.api();
+                            console.log(api);
                         },
 
                         "aoColumnDefs": [
