@@ -424,46 +424,46 @@
             return true;
         }
 
-        {{--//删除数据方法--}}
-        {{--function del(id){--}}
-            {{--swal({--}}
-                {{--title: "警示",--}}
-                {{--text: "您确认要删除本条数据吗？",--}}
-                {{--type: "warning",--}}
-                {{--showCancelButton: true,--}}
-                {{--confirmButtonColor: "#ea5460",--}}
-                {{--cancelButtonText: "取消",--}}
-                {{--confirmButtonText: "执行删除！",--}}
-                {{--confirmButtonClass:"btn-danger",--}}
-                {{--closeOnConfirm: true--}}
-            {{--}, function (r) {--}}
-                {{--//判断是否正在删除--}}
-                {{--if(r){--}}
-                    {{--$.post("/admin/daily_times/delete/"+id,{'_token':"{{csrf_token()}}"}, function (data) {--}}
-                        {{--toastr.options = {--}}
-                            {{--"closeButton": true,--}}
-                            {{--"debug": false,--}}
-                            {{--"positionClass": "toast-top-center",--}}
-                            {{--"onclick": null,--}}
-                            {{--"showDuration": "1000",--}}
-                            {{--"hideDuration": "1000",--}}
-                            {{--"timeOut": "5000",--}}
-                            {{--"extendedTimeOut": "1000",--}}
-                            {{--"showEasing": "swing",--}}
-                            {{--"hideEasing": "linear",--}}
-                            {{--"showMethod": "fadeIn",--}}
-                            {{--"hideMethod": "fadeOut"--}}
-                        {{--}--}}
-                        {{--if (data.success) {--}}
-                            {{--toastr.success(data.msg, "提示")--}}
-                            {{--$("#datatable_orders").DataTable().ajax.reload();--}}
-                        {{--}else {--}}
-                            {{--toastr.warning(data.msg, "提示")--}}
-                        {{--}--}}
-                    {{--},'json')--}}
-                {{--}--}}
-            {{--});--}}
-        {{--}--}}
+        //删除数据方法
+        function del(id){
+            swal({
+                title: "警示",
+                text: "您确认要删除本条数据吗？",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#ea5460",
+                cancelButtonText: "取消",
+                confirmButtonText: "执行删除！",
+                confirmButtonClass:"btn-danger",
+                closeOnConfirm: true
+            }, function (r) {
+                //判断是否正在删除
+                if(r){
+                    $.post("/admin/ad/delete/"+id,{'_token':"{{csrf_token()}}"}, function (data) {
+                        toastr.options = {
+                            "closeButton": true,
+                            "debug": false,
+                            "positionClass": "toast-top-center",
+                            "onclick": null,
+                            "showDuration": "1000",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                        if (data.success) {
+                            toastr.success(data.msg, "提示")
+                            $("#datatable_orders").DataTable().ajax.reload();
+                        }else {
+                            toastr.warning(data.msg, "提示")
+                        }
+                    },'json')
+                }
+            });
+        }
 
     </script>
 
