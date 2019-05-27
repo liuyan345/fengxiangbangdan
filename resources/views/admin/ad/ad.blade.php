@@ -428,7 +428,7 @@
         function del(id){
             swal({
                 title: "警示",
-                text: "您确认要删除本条数据吗？",
+                text: "您确认要删除本条数据吗？删除后会影响后续其他操作",
                 type: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#ea5460",
