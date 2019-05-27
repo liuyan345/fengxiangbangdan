@@ -74,6 +74,13 @@ class DataModel extends Base
             $list = array();
         }
         $footer['cdate'] = "总计：";
+        $footer['id'] = "";
+        $footer['channel_name'] = "";
+        $footer['ad_name'] = "";
+        $footer['pack_name'] = "";
+        $footer['type'] = "";
+        $footer["status"] = "";
+        $footer['price'] = "";
         $result = array(
             "sEcho"=>$_POST,
             "iTotalRecords"=>$total,
