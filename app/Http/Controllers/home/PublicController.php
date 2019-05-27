@@ -88,14 +88,20 @@ class PublicController extends Controller
     // 添加新的渠道
     public function channelAdd(Request $request){
         $_POST['asepasswd'] = getmd5passwd($_POST['passwd']);
-        $condition['name'] = $request['name'];
-        $data = $this->store($request,$condition);
+
         if(empty($_POST['name'])){
             return redirect('/home/login')->with('message', array('type' => 'fail','content'=>'渠道名不能为空'));
+        }
+        if(empty($_POST['company'])){
+            return redirect('/home/login')->with('message', array('type' => 'fail','content'=>'渠道公司不能为空'));
         }
         if(empty($_POST['passwd'])){
             return redirect('/home/login')->with('message', array('type' => 'fail','content'=>'密码不能为空'));
         }
+        $condition['company'] = $request['company'];
+        $condition['name'] = $request['name'];
+
+        $data = $this->store($request,$condition);
 
         if($data['success']){
             $admin = new Channel();

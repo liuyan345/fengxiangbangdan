@@ -33,6 +33,18 @@ auther 刘岩
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="col-md-3 control-label">公司名称</label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control"  disabled="disabled" value="{{$channelInfo['company']}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">下载地址<span class="required">*</span></label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="loadlink" @if(!empty($channelInfo['loadlink'])) value="{{$channelInfo['loadlink']}}" @endif>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="col-md-3 control-label">联系人<span class="required">*</span></label>
                             <div class="col-md-6">
                                 <input type="text" class="form-control" name="linkman" @if(!empty($channelInfo['linkman'])) value="{{$channelInfo['linkman']}}" @endif>
@@ -114,7 +126,7 @@ auther 刘岩
             }
             var postData = $("#data_form").serializeArray();
             var channelId = $("#channelId").val();
-            var required = ['linkman','linkmanMobile'];
+            var required = ['linkman','linkmanMobile','loadlink'];
             var result   = verify(required,postData);
             if(result){
                 App.blockUI({animate: true});

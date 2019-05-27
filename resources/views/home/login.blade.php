@@ -74,8 +74,11 @@
         <h3 class="font-green">欢迎渠道商注册</h3>
         {{--<p class="hint"> Enter your personal details below: </p>--}}
         <div class="form-group">
-            <label class="control-label visible-ie8 visible-ie9">渠道名称（公司名称）</label>
-            <input class="form-control placeholder-no-fix" type="text" placeholder="渠道名称（公司名称）" name="name" /> </div>
+            <label class="control-label visible-ie8 visible-ie9">渠道名称</label>
+            <input class="form-control placeholder-no-fix" type="text" placeholder="渠道名称" name="name" /> </div>
+        <div class="form-group">
+            <label class="control-label visible-ie8 visible-ie9">公司名称</label>
+            <input class="form-control placeholder-no-fix" type="text" placeholder="公司名称" name="company" /> </div>
         <div class="form-group">
             <label class="control-label visible-ie8 visible-ie9">密码</label>
             <input class="form-control placeholder-no-fix" type="password" autocomplete="off" placeholder="密码" name="passwd" /> </div>
