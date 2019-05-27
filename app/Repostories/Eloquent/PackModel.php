@@ -40,17 +40,31 @@ class PackModel extends Base
         if(!empty($request->input('pack_name'))){
             $this->model  = $this->model->where('name','like','%'.$request->input('pack_name').'%');
         }
-
+        if(!empty($request->input('channel_name'))){
+            $this->model  = $this->model->where('channel_name','like','%'.$request->input('channel_name').'%');
+        }
+        if(!empty($request->input('ad_name'))){
+            $this->model  = $this->model->where('ad_name','like','%'.$request->input('ad_name').'%');
+        }
+        if(!empty($request->input('ad_company'))){
+            $this->model  = $this->model->where('ad_company','like','%'.$request->input('ad_company').'%');
+        }
+        if(!empty($request->input('channel_company'))){
+            $this->model  = $this->model->where('channel_company','like','%'.$request->input('channel_company').'%');
+        }
+        if(!empty($request->input('ad_type'))){
+            $this->model  = $this->model->where('ad_type',$request->input('ad_type'));
+        }
         if(!empty($request->input('status'))){
             $this->model  = $this->model->where('status',$request->input('status'));
         }
 
-        $ad = new Ad();
-        if(!empty($request->input('ad_name'))){
-            $adId = $ad->where("name","like","%".$request['ad_name']."%")->pluck("id");
-            $adId = json_decode(json_encode($adId),true);
-            $this->model  = $this->model->whereIn('ad_id',$adId);
-        }
+//        $ad = new Ad();
+//        if(!empty($request->input('ad_name'))){
+//            $adId = $ad->where("name","like","%".$request['ad_name']."%")->pluck("id");
+//            $adId = json_decode(json_encode($adId),true);
+//            $this->model  = $this->model->whereIn('ad_id',$adId);
+//        }
 
         $start = isset($_POST['start']) ? intval($_POST['start']) : 0;
         $rows = isset($_POST['length']) ? intval($_POST['length']) == 0 ? 10 : intval($_POST['length']) : 10;
@@ -59,14 +73,14 @@ class PackModel extends Base
         $total      =  $this->model->count();
         $list       =  $this->model->select($columns)->orderBy($orderField,$orderType)->offset($start)->limit($rows)->get();
 
-        $adInfo = $ad->getAdName();
-        $channel = new Channel();
-        $channelInfo = $channel->getChannelName();
+//        $adInfo = $ad->getAdName();
+//        $channel = new Channel();
+//        $channelInfo = $channel->getChannelName();
 
-        foreach($list as &$v){
-           $v['ad_name'] = $adInfo[$v['ad_id']];
-           $v['channel_name'] = $channelInfo[$v['channel_id']];
-        }
+//        foreach($list as &$v){
+//           $v['ad_name'] = $adInfo[$v['ad_id']];
+//           $v['channel_name'] = $channelInfo[$v['channel_id']];
+//        }
 
         if(empty($list)){
             $list = array();
