@@ -133,7 +133,11 @@
                         <input type="text" class="form-control input-inline" style="margin-right: 8px;float: left" placeholder="广告名称" id="ad_name">
                         <input type="text" class="form-control input-inline" style="margin-right: 8px;float: left" placeholder="渠道名称" id="channel_name">
                         <input type="text" class="form-control input-inline" style="margin-right: 8px;float: left" placeholder="渠道包" id="pack_name">
-
+                        <select class="bs-select form-control" id="status" style="margin-right: 8px;width:118px;float: left">
+                            <option value="">数据状态</option>
+                            <option value="1">初始值</option>
+                            <option value="2">已结算</option>
+                        </select>
                         <div class="search_laber">
                             <div class="input-group date form_datetime" data-date=""  data-date-format="yyyy-mm-dd" data-link-format="yyyy-mm-dd" data-link-field="start_time">
                                 <input class="form-control" type="text" placeholder="开始日期" readonly>
@@ -150,11 +154,18 @@
                             </div>
                             <input type="hidden" id="end_time" name="end_time" value="" />
                         </div>
-                            <button class="btn btn-sm btn-default table-group-action-submit"><i class="fa fa-search"></i> 搜索</button>
+                        <button class="btn btn-sm btn-default table-group-action-submit"><i class="fa fa-search"></i> 搜索</button>
+                        <button class="btn btn-sm btn-info" onclick="jiesuan()">批量结算</button>
                     </div>
                     <table class="table table-striped table-bordered table-hover table-checkable" id="datatable_orders">
                         <thead>
                         <tr role="row" class="heading">
+                            <th width="5%">
+                                <label class="mt-checkbox mt-checkbox-single mt-checkbox-outline">
+                                    <input type="checkbox" name="test_checkbox" class="group-checkable" data-set="#sample_1 .checkboxes" />
+                                    <span></span>
+                                </label>
+                            </th>
                             <th width="5%">id</th>
                             <th width="10%">数据日期</th>
                             <th width="7%">渠道名称</th>
@@ -233,6 +244,7 @@
                                 d.pack_name = $("#pack_name").val();
                                 d.start_time = $("#start_time").val();
                                 d.end_time = $("#end_time").val();
+                                d.status = $("#status").val();
                             }
                         },
                         'sort': false,
@@ -251,6 +263,16 @@
                             }
                         },
                         'aoColumns':[
+                            {'mData':   "id",
+                                render: function ( data, type, row ) {
+                                    var id = row.id;
+                                    if ( type === 'display' ) {
+                                        return '<label class="mt-checkbox mt-checkbox-single mt-checkbox-outline"><input name="data_id[]" type="checkbox" class="checkboxes" value="'+id+'" data-auditresult="'+row.auditResult+'"><span></span></label>';
+                                    }
+                                    return data;
+                                },
+                                'className': "dt-body-center"
+                            },
                             {'mData':'id'},
                             {'mData':'cdate'},
                             {'mData':'channel_name'},
@@ -332,13 +354,10 @@
                 dataType: 'json',
                 data: {"_token": "{{csrf_token()}}"},
                 beforeSend: function () {
-                    App.blockUI({
-                        target: '.modal-dialog',
-                        animate: true
-                    });
+                    App.blockUI({animate: true});
                 },
                 success: function (data) {
-                    App.unblockUI('.modal-dialog');
+                    App.unblockUI();
                     if (data.success) {
                         toastr.success(data.msg, "提示")
                         $("#datatable_orders").DataTable().ajax.reload();
@@ -352,6 +371,52 @@
 
         function download(){
             window.location.href = '/admin/data/download';
+        }
+
+        function jiesuan() {
+            var ids = '';
+            var num = 0;
+            $(".checkboxes").each(function () {
+                if ($(this).is(':checked')) {
+                    var value = $(this).val();
+                    if (ids == '') {
+                        ids = value;
+                    } else {
+                        ids += ',' + value;
+                    }
+                    num++;
+                }
+            })
+            if (num == 0) {
+                return false;
+            }
+            swal({
+                title: "警示",
+                text: "您确认要批量结算" + num + "条数据吗？",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#ea5460",
+                cancelButtonText: "取消",
+                confirmButtonText: "确定结算！",
+                confirmButtonClass: "btn-success",
+                closeOnConfirm: true
+            }, function (r) {
+                //判断是否正在删除
+                if (r) {
+                    App.blockUI({animate: true});
+                    $.post("/admin/data/jiesuan", {'ids': ids,'_token': "{{csrf_token()}}"}, function (data) {
+                        App.unblockUI();
+                        check = true;
+                        if (data.success) {
+                            toastr.success(data.msg, "提示")
+                            $("#datatable_orders").DataTable().ajax.reload(null, false);
+                        } else {
+                            toastr.warning(data.msg, "提示")
+                        }
+                    }, 'json')
+                }
+            });
+
         }
 
     </script>

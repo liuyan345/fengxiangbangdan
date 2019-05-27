@@ -45,6 +45,11 @@ class DataController extends Controller
         $this->actor->download();
     }
 
+    public function jiesuan(Request $request)
+    {
+        $infos = $this->actor->jiesuan($request);
+        return response()->json($infos);
+    }
 
 
 

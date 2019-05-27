@@ -51,6 +51,9 @@ class DataModel extends Base
         if(!empty($request['pack_name'])){
             $this->model = $this->model->where("pack_name","like","%".$request['pack_name']."%");
         }
+        if(!empty($request['status'])){
+            $this->model = $this->model->where("status",$request['status']);
+        }
 
         $start = isset($_POST['start']) ? intval($_POST['start']) : 0;
         $rows = isset($_POST['length']) ? intval($_POST['length']) == 0 ? 10 : intval($_POST['length']) : 10;
@@ -196,6 +199,21 @@ class DataModel extends Base
                 }
             });
         })->export('xls');
+    }
+
+    public function jiesuan($request){
+        $ids = $request->input("ids");
+        $ids = explode(",", $ids);
+        $ids = array_flip(array_flip($ids));
+
+        $res = $this->model->whereIn("id",$ids)->update(['status'=>2]);
+
+        if($res){
+            return ['success'=>true,"msg"=>"结算成功"];
+        }else{
+            return ['success'=>false,"msg"=>"结算失败"];
+        }
+
     }
 
 

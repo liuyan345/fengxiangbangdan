@@ -117,6 +117,7 @@ Route::group(['prefix' => 'admin','middleware'=>'AdminCommon'], function () {
     Route::post('data/datalist','admin\DataController@datalist');
     Route::post('data/upload','admin\DataController@upload');
     Route::get('data/download','admin\DataController@download');
+    Route::get('data/jiesuan','admin\DataController@jiesuan');
 });
 
 

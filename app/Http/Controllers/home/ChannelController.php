@@ -58,6 +58,8 @@ class ChannelController extends Controller{
             $model= $model->where("pack_name","like","%".$request['pack_name']."%");
         }
 
+        $model = $model->where("status",1);
+        
         $start = isset($_POST['start']) ? intval($_POST['start']) : 0;
         $rows = isset($_POST['length']) ? intval($_POST['length']) == 0 ? 10 : intval($_POST['length']) : 10;
 
