@@ -291,12 +291,8 @@
                             {'mData':'data'},
                             {'mData':'money'},
                         ],
-                        "onLoadSuccess" : function (data) {  //加载成功时执行
+                        "footerCallback":function(tfoot,data,start,end,display){
                             console.log(data);
-                            var rows = [];
-//                            data.footer.all_money = data.footer.own_money + data.footer.inc_money + data.footer.high_money;
-//                            rows.push(data.footer);
-                            $('#datatable_orders').bootstrapTable('append', rows);
                         },
 
                         "aoColumnDefs": [
