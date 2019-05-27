@@ -42,7 +42,12 @@ class DataModel extends Base
             $this->model  = $this->model->whereBetween('cdate',[$startTime,$endTime]);
         }
 
-
+        if(!empty($request['channel_company'])){
+            $this->model = $this->model->where("channel_company","like","%".$request['channel_company']."%");
+        }
+        if(!empty($request['ad_company'])){
+            $this->model = $this->model->where("ad_company","like","%".$request['ad_company']."%");
+        }
         if(!empty($request['channel_name'])){
             $this->model = $this->model->where("channel_name","like","%".$request['channel_name']."%");
         }
@@ -55,8 +60,8 @@ class DataModel extends Base
         if(!empty($request['status'])){
             $this->model = $this->model->where("status",$request['status']);
         }
-        if(!empty($request['type'])){
-            $this->model = $this->model->where("type",$request['type']);
+        if(!empty($request['ad_type'])){
+            $this->model = $this->model->where("type",$request['ad_type']);
         }
 
         $start = isset($_POST['start']) ? intval($_POST['start']) : 0;
@@ -81,9 +86,11 @@ class DataModel extends Base
         $footer['channel_name'] = "";
         $footer['ad_name'] = "";
         $footer['pack_name'] = "";
-        $footer['type'] = "";
+        $footer['ad_type'] = "";
         $footer["status"] = "";
         $footer['price'] = "";
+        $footer['ad_company'] = "";
+        $footer['channel_company'] = "";
         $list[] = $footer;
 
         $result = array(
@@ -122,11 +129,8 @@ class DataModel extends Base
             $allowPack[] = $v['pack_name'];
             $packSelect[$v['pack_name']] = $v;
         }
-        $adModel = new Ad();
-        $adInfo = $adModel->getAdName();
 
-        $channelModel = new Channel();
-        $channelInfo = $channelModel->getChannelName();
+        $packId = [];
 
         $flag = true;
         $msg = '';
@@ -156,31 +160,38 @@ class DataModel extends Base
                 $msg = "第".($i+1)."行，数据已录入";
                 break;
             }
+
+            $packId[] = $pack_name;
         }
 
+
         if($flag){
+            $packModel = new Pack();
+
+            $packInfos = $packModel->whereIn("pack_name",$packId)->select("*")->get();
+
+            $newPackInfos = [];
+            foreach ($packInfos as $pvalue){
+                $newPackInfos[$pvalue['pack_name']] = $pvalue;
+            }
+
             for($i = 1;$i<count($datas);$i++){
                 $dataInfo = $datas[$i];
-
                 $pack_name = trim($dataInfo[1]);
-                $channelId = $packSelect[$pack_name]['channel_id'];
-                $adId = $packSelect[$pack_name]['ad_id'];
+                $packSingleInfo = $newPackInfos[$pack_name];
                 $temp = [];
                 $temp['cdate'] = date("Y-m-d",strtotime($dataInfo[0]));
                 $temp['pack_name'] = $pack_name;
-                $temp['channel_id'] = $channelId;
-                $temp['channel_name'] = $channelInfo[$channelId];
-                $temp['ad_id'] = $adId;
-                $temp['ad_name'] = $adInfo[$adId];
+                $temp['channel_id'] = $packSingleInfo['channel_id'];
+                $temp['channel_name'] = $packSingleInfo["channel_name"];
+                $temp['channel_company'] = $packSingleInfo["channel_company"];
+                $temp['ad_id'] = $packSingleInfo["ad_id"];
+                $temp['ad_name'] = $packSingleInfo["ad_name"];
+                $temp['ad_type'] = $packSingleInfo["ad_type"];
+                $temp['ad_company'] = $packSingleInfo["ad_company"];
                 $temp['price'] = $dataInfo[2];
                 $temp['data'] = $dataInfo[3];
                 $temp['money'] = $dataInfo[4];
-                preg_match("/\((.*)\)/", $temp['ad_name'],$type);
-                if(empty($type[1])){
-                    $temp['type'] = "";
-                }else{
-                    $temp['type'] = $type[1];
-                }
 
                 $this->model->insert($temp);
             }

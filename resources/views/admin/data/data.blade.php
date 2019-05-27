@@ -131,17 +131,19 @@
                 <div class="table-container">
                     <div class="table-actions-wrapper">
                         <input type="text" class="form-control input-inline" style="margin-right: 8px;float: left" placeholder="广告名称" id="ad_name">
+                        <input type="text" class="form-control input-inline" style="margin-right: 8px;float: left" placeholder="广告公司" id="ad_company">
                         <input type="text" class="form-control input-inline" style="margin-right: 8px;float: left" placeholder="渠道名称" id="channel_name">
+                        <input type="text" class="form-control input-inline" style="margin-right: 8px;float: left" placeholder="渠道公司" id="channel_company">
                         <input type="text" class="form-control input-inline" style="margin-right: 8px;float: left" placeholder="渠道包" id="pack_name">
                         <select class="bs-select form-control" id="status" style="margin-right: 8px;width:118px;float: left">
                             <option value="">数据状态</option>
                             <option value="1">初始值</option>
                             <option value="2">已结算</option>
                         </select>
-                        <select class="bs-select form-control" id="type" style="margin-right: 8px;width:118px;float: left">
+                        <select class="bs-select form-control" id="ad_type" style="margin-right: 8px;width:118px;float: left">
                             <option value="">广告类型</option>
-                            <option value="ios">ios</option>
-                            <option value="android">android</option>
+                            <option value="1">ios</option>
+                            <option value="2">android</option>
                         </select>
                         <div class="search_laber">
                             <div class="input-group date form_datetime" data-date=""  data-date-format="yyyy-mm-dd" data-link-format="yyyy-mm-dd" data-link-field="start_time">
@@ -174,9 +176,11 @@
                             <th width="5%">id</th>
                             <th width="10%">数据日期</th>
                             <th width="7%">渠道名称</th>
+                            <th width="7%">渠道公司</th>
                             <th width="7%">广告名称</th>
+                            <th width="7%">广告公司</th>
                             <th width="7%">渠道包</th>
-                            <th width="7%">系统</th>
+                            <th width="7%">广告类型</th>
                             <th width="7%">数据状态</th>
                             <th width="7%">单价</th>
                             <th width="7%">注册数</th>
@@ -251,7 +255,9 @@
                                 d.start_time = $("#start_time").val();
                                 d.end_time = $("#end_time").val();
                                 d.status = $("#status").val();
-                                d.type = $("#type").val();
+                                d.ad_type = $("#ad_type").val();
+                                d.ad_company = $("#ad_company").val();
+                                d.channel_company = $("#channel_company").val();
                             },
 //                            "dataSrc": function ( json ) {
 //                                json.data.push(json.footer)
@@ -288,9 +294,11 @@
                             {'mData':'id'},
                             {'mData':'cdate'},
                             {'mData':'channel_name'},
+                            {'mData':'channel_company'},
                             {'mData':'ad_name'},
+                            {'mData':'ad_company'},
                             {'mData':'pack_name'},
-                            {'mData':'type'},
+                            {'mData':'ad_type'},
                             {'mData':function(lineData){
                                 if(lineData.status == 1){
                                     return "<span style='color:green'>初始值</span>";
