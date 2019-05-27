@@ -298,7 +298,15 @@
                             {'mData':'ad_name'},
                             {'mData':'ad_company'},
                             {'mData':'pack_name'},
-                            {'mData':'ad_type'},
+                            {'mData':function(lineData){
+                                if(lineData.ad_type == 1){
+                                    return "ios";
+                                }else if(lineData.ad_type == 2){
+                                    return "android";
+                                }else{
+                                    return "";
+                                }
+                            }},
                             {'mData':function(lineData){
                                 if(lineData.status == 1){
                                     return "<span style='color:green'>初始值</span>";
