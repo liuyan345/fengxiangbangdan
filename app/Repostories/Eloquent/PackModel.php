@@ -97,6 +97,12 @@ class PackModel extends Base
 
     public function myStore($request,$condition){
 
+        $info = $this->model->where("pack_name",$condition['pack_name'])->select("id")->first();
+
+        if(!empty($info->id)){
+            return array('success'=>false,'msg'=>'添加失败!此渠道包名已存在!!!');
+        }
+
         if(!empty($condition)){
             $info = $this->model->where($condition)->select("id")->first();
         }else{
