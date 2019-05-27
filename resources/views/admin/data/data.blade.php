@@ -273,6 +273,8 @@
                                         var id = row.id;
                                         return '<label class="mt-checkbox mt-checkbox-single mt-checkbox-outline"><input name="data_id[]" type="checkbox" class="checkboxes" value="'+id+'" data-auditresult="'+row.auditResult+'"><span></span></label>';
                                         return data;
+                                    }else{
+                                        return "";
                                     }
                                 },
                                 'className': "dt-body-center"
@@ -288,6 +290,8 @@
                                     return "<span style='color:green'>初始值</span>";
                                 }else if(lineData.status == 2){
                                     return "<span style='color:blue'>已结算</span>";
+                                }else{
+                                    return "";
                                 }
                             }},
                             {'mData':'price'},
