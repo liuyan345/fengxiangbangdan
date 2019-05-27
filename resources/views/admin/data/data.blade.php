@@ -299,10 +299,10 @@
                             {'mData':'data'},
                             {'mData':'money'},
                         ],
-                        "footerCallback":function(tfoot,data,start,end,display){
-                            var api = this.api();
-                            console.log(api);
-                        },
+//                        "footerCallback":function(tfoot,data,start,end,display){
+//                            var api = this.api();
+//                            console.log(api);
+//                        },
 
                         "aoColumnDefs": [
                             {
