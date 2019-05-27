@@ -95,6 +95,49 @@ class PackModel extends Base
     }
 
 
+    public function myStore($request,$condition){
+        
+        if(!empty($condition)){
+            $info = $this->model->where($condition)->select("id")->first();
+        }else{
+            $info = array();
+        }
+
+        if($info->id){
+            $result = array('success'=>false,'msg'=>'添加失败!此条目已存在!!!');
+        }else{
+            $param = $request->except(['_token']);
+            $ad = new Ad();
+            $adInfo = $ad->where('id',$param['ad_id'])->select("name","type","company")->first();
+
+            $param['ad_name'] = $adInfo->name;
+            $param['ad_type'] = $adInfo->type;
+            $param['ad_company'] = $adInfo->ad_company;
+
+            $channel = new Channel();
+            $channelInfo = $channel->where("id",$param['channel_id'])->select("name","company")->first();
+
+            $param['channel_name'] = $channelInfo['name'];
+            $param['channel_company'] = $channelInfo['company'];
+
+            foreach($param as &$v){
+                if(is_string($v)){
+                    $v = trim($v);
+                }
+            }
+
+            $res = $this->model->insertGetId($param);
+
+            if($res){
+                $result = array('success'=>true,'msg'=>'添加成功!!','id'=>$res);
+            }else{
+                $result = array('success'=>false,'msg'=>'添加失败!!');
+            }
+        }
+        return $result;
+
+    }
+
 
 
 

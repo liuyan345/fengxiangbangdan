@@ -37,7 +37,7 @@ class PackController extends Controller{
         $condition['ad_id'] = $request['ad_id'];
         $condition['channel_id'] = $request['channel_id'];
         $condition['pack_name'] = $request['pack_name'];
-        $data = $this->actor->store($request,$condition);
+        $data = $this->actor->myStore($request,$condition);
         return response()->json($data);
     }
 
