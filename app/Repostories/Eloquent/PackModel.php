@@ -106,7 +106,7 @@ class PackModel extends Base
         if(!empty($info->id)){
             $result = array('success'=>false,'msg'=>'添加失败!此条目已存在!!!');
         }else{
-            $param = $request->except(['_token']);
+            $param = $request->except(['_token','s']);
             $ad = new Ad();
             $adInfo = $ad->where('id',$param['ad_id'])->select("name","type","company")->first();
 
