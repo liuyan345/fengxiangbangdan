@@ -247,15 +247,10 @@
                                 d.end_time = $("#end_time").val();
                                 d.status = $("#status").val();
                             },
-                            "dataSrc": function ( json ) {
-//                                console.log(json.footer);
-                                json.data.push(json.footer)
-                                return json.data;
-//                                for ( var i=0, ien=json.data.length ; i<ien ; i++ ) {
-//                                    json.data[i][0] = '<a href="/message/'+json.data[i][0]+'">View message</a>';
-//                                }
+//                            "dataSrc": function ( json ) {
+//                                json.data.push(json.footer)
 //                                return json.data;
-                            }
+//                            }
                         },
                         'sort': false,
                         "sPaginationType": "full_numbers",      //翻页界面类型
@@ -273,8 +268,7 @@
                             }
                         },
                         'aoColumns':[
-                            {'mData':   "id",
-                                render: function ( data, type, row ) {
+                            {'mData':   "id", render: function ( data, type, row ) {
                                     if(row.id){
                                         var id = row.id;
                                         if ( type === 'display' ) {

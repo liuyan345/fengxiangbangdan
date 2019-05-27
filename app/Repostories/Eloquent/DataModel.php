@@ -81,12 +81,14 @@ class DataModel extends Base
         $footer['type'] = "";
         $footer["status"] = "";
         $footer['price'] = "";
+        $list[] = $footer;
+
         $result = array(
             "sEcho"=>$_POST,
             "iTotalRecords"=>$total,
             "iTotalDisplayRecords"=>$total,
             "data"=>$list,
-            "footer"=>$footer
+//            "footer"=>$footer
         );
         return $result;
     }
