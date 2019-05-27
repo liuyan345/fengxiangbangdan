@@ -96,7 +96,7 @@ class PackModel extends Base
 
 
     public function myStore($request,$condition){
-        
+
         if(!empty($condition)){
             $info = $this->model->where($condition)->select("id")->first();
         }else{
