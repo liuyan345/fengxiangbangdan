@@ -248,6 +248,7 @@
                                 d.status = $("#status").val();
                             },
                             "dataSrc": function ( json ) {
+                                return json.data;
                                 console.log(json);
 //                                for ( var i=0, ien=json.data.length ; i<ien ; i++ ) {
 //                                    json.data[i][0] = '<a href="/message/'+json.data[i][0]+'">View message</a>';
