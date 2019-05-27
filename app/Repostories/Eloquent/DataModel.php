@@ -69,11 +69,15 @@ class DataModel extends Base
         if(empty($list)){
             $list = array();
         }
+        $footer['cdate'] = "总计：";
+        $footer1['cdate'] = "总计1：";
         $result = array(
             "sEcho"=>$_POST,
             "iTotalRecords"=>$total,
             "iTotalDisplayRecords"=>$total,
             "data"=>$list,
+            "footer"=>$footer1,
+            "tfoot"=>$footer,
         );
         return $result;
     }
