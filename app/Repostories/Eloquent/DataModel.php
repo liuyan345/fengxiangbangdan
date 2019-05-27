@@ -14,6 +14,7 @@ use App\Models\Channel;
 use App\Models\Data;
 use App\Models\Pack;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Facades\Excel;
 
 class DataModel extends Base
@@ -56,10 +57,13 @@ class DataModel extends Base
         }
 
         $start = isset($_POST['start']) ? intval($_POST['start']) : 0;
-        $rows = isset($_POST['length']) ? intval($_POST['length']) == 0 ? 10 : intval($_POST['length']) : 10;
+        $rows  = isset($_POST['length']) ? intval($_POST['length']) == 0 ? 10 : intval($_POST['length']) : 10;
 
-        $total      =  $this->model->count();
-        $list       =  $this->model->select($columns)->orderBy($orderField,$orderType)->offset($start)->limit($rows)->get();
+        $footer = $this->model->select(DB::raw("sum(data) as data,sum(money) as money"))->first();
+        $footer = json_decode(json_encode($footer), true);
+
+        $total = $this->model->count();
+        $list  = $this->model->select($columns)->orderBy($orderField, $orderType)->offset($start)->limit($rows)->get();
 
 
         foreach($list as &$v){
@@ -70,14 +74,12 @@ class DataModel extends Base
             $list = array();
         }
         $footer['cdate'] = "总计：";
-        $footer1['cdate'] = "总计1：";
         $result = array(
             "sEcho"=>$_POST,
             "iTotalRecords"=>$total,
             "iTotalDisplayRecords"=>$total,
             "data"=>$list,
-            "footer"=>$footer1,
-            "tfoot"=>$footer,
+            "footer"=>$footer
         );
         return $result;
     }
