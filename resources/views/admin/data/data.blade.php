@@ -268,12 +268,10 @@
                             }
                         },
                         'aoColumns':[
-                            {'mData':   "id", render: function ( data, type, row ) {
+                            {'mData': function (row ) {
                                     if(row.id){
                                         var id = row.id;
-                                        if ( type === 'display' ) {
-                                            return '<label class="mt-checkbox mt-checkbox-single mt-checkbox-outline"><input name="data_id[]" type="checkbox" class="checkboxes" value="'+id+'" data-auditresult="'+row.auditResult+'"><span></span></label>';
-                                        }
+                                        return '<label class="mt-checkbox mt-checkbox-single mt-checkbox-outline"><input name="data_id[]" type="checkbox" class="checkboxes" value="'+id+'" data-auditresult="'+row.auditResult+'"><span></span></label>';
                                         return data;
                                     }
                                 },
