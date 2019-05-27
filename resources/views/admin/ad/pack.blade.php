@@ -46,9 +46,12 @@
             margin: 0;
             position: relative;
             vertical-align: middle;
-            width: 290px;
+            width: 294px;
             border: 1px #c2cad8 solid;
             border-radius: 3px;
+        }
+        .select2-dropdown{
+            width:294px;
         }
     </style>
 @stop
@@ -208,7 +211,7 @@
 @section('page_javascript')
     <script>
         $(document).ready(function() {
-            $('.js-example-basic-single').select2();
+            $('.js-example-basic-single').select2({"width":294});
         });
         var url;
         var check = true;
