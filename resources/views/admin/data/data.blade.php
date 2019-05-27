@@ -275,11 +275,13 @@
                         'aoColumns':[
                             {'mData':   "id",
                                 render: function ( data, type, row ) {
-                                    var id = row.id;
-                                    if ( type === 'display' ) {
-                                        return '<label class="mt-checkbox mt-checkbox-single mt-checkbox-outline"><input name="data_id[]" type="checkbox" class="checkboxes" value="'+id+'" data-auditresult="'+row.auditResult+'"><span></span></label>';
+                                    if(!row.id){
+                                        var id = row.id;
+                                        if ( type === 'display' ) {
+                                            return '<label class="mt-checkbox mt-checkbox-single mt-checkbox-outline"><input name="data_id[]" type="checkbox" class="checkboxes" value="'+id+'" data-auditresult="'+row.auditResult+'"><span></span></label>';
+                                        }
+                                        return data;
                                     }
-                                    return data;
                                 },
                                 'className': "dt-body-center"
                             },
@@ -298,12 +300,9 @@
                             }},
                             {'mData':'price'},
                             {'mData':'data'},
-                            {'mData':'money'},
+                            {'mData':'money'}
                         ],
-//                        "footerCallback":function(tfoot,data,start,end,display){
-//                            var api = this.api();
-//                            console.log(api);
-//                        },
+
 
                         "aoColumnDefs": [
                             {
