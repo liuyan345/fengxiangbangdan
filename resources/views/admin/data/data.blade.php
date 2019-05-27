@@ -138,6 +138,11 @@
                             <option value="1">初始值</option>
                             <option value="2">已结算</option>
                         </select>
+                        <select class="bs-select form-control" id="type" style="margin-right: 8px;width:118px;float: left">
+                            <option value="">广告类型</option>
+                            <option value="ios">ios</option>
+                            <option value="android">android</option>
+                        </select>
                         <div class="search_laber">
                             <div class="input-group date form_datetime" data-date=""  data-date-format="yyyy-mm-dd" data-link-format="yyyy-mm-dd" data-link-field="start_time">
                                 <input class="form-control" type="text" placeholder="开始日期" readonly>
@@ -246,6 +251,7 @@
                                 d.start_time = $("#start_time").val();
                                 d.end_time = $("#end_time").val();
                                 d.status = $("#status").val();
+                                d.type = $("#type").val();
                             },
 //                            "dataSrc": function ( json ) {
 //                                json.data.push(json.footer)

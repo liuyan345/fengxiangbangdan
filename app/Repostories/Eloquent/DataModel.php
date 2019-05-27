@@ -55,6 +55,9 @@ class DataModel extends Base
         if(!empty($request['status'])){
             $this->model = $this->model->where("status",$request['status']);
         }
+        if(!empty($request['type'])){
+            $this->model = $this->model->where("type",$request['type']);
+        }
 
         $start = isset($_POST['start']) ? intval($_POST['start']) : 0;
         $rows  = isset($_POST['length']) ? intval($_POST['length']) == 0 ? 10 : intval($_POST['length']) : 10;
