@@ -84,7 +84,7 @@
                         <input type="text" class="form-control input-inline" style="margin-right: 8px;" placeholder="渠道包名" id="pack_name">
                         <input type="text" class="form-control input-inline" style="margin-right: 8px;" placeholder="渠道公司" id="channel_company">
                         <input type="text" class="form-control input-inline" style="margin-right: 8px;" placeholder="渠道名称" id="channel_name">
-                        <select class="bs-select form-control" id="status" style="margin-right: 8px;width:118px;float: left">
+                        <select class="bs-select form-control" id="ad_type" style="margin-right: 8px;width:118px;float: left">
                             <option value="">广告类型</option>
                             <option value="1">ios</option>
                             <option value="2">android</option>
@@ -288,9 +288,9 @@
                             {'mData':'ad_name'},
                             {'mData':'ad_company'},
                             {'mData':function(lineData){
-                                if(lineData.type == 1){
+                                if(lineData.ad_type == 1){
                                     return "ios";
-                                }else if(lineData.type == 2){
+                                }else if(lineData.ad_type == 2){
                                     return "android"
                                 }
                             }},

@@ -46,8 +46,8 @@ class AdModel extends Base
         if(!empty($request->input('status'))){
             $this->model  = $this->model->where('status',$request->input('status'));
         }
-        if(!empty($request->input('type'))){
-            $this->model  = $this->model->where('type',$request->input('type'));
+        if(!empty($request->input('ad_type'))){
+            $this->model  = $this->model->where('ad_type',$request->input('ad_type'));
         }
 
         $start = isset($_POST['start']) ? intval($_POST['start']) : 0;
