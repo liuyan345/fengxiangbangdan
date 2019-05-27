@@ -172,6 +172,7 @@
                             <th width="7%">广告名称</th>
                             <th width="7%">渠道包</th>
                             <th width="7%">系统</th>
+                            <th width="7%">数据状态</th>
                             <th width="7%">单价</th>
                             <th width="7%">注册数</th>
                             <th width="7%">收益</th>
@@ -279,13 +280,13 @@
                             {'mData':'ad_name'},
                             {'mData':'pack_name'},
                             {'mData':'type'},
-//                            {'mData':function(lineData){
-//                                if(lineData.status == 1){
-//                                    return "<span style='color:green'>上架</span>";
-//                                }else if(lineData.status == 2){
-//                                    return "<span style='color:red'>下架</span>";
-//                                }
-//                            }},
+                            {'mData':function(lineData){
+                                if(lineData.status == 1){
+                                    return "<span style='color:green'>初始值</span>";
+                                }else if(lineData.status == 2){
+                                    return "<span style='color:blue'>已结算</span>";
+                                }
+                            }},
                             {'mData':'price'},
                             {'mData':'data'},
                             {'mData':'money'},
