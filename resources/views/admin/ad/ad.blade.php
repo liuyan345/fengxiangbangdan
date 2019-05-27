@@ -67,6 +67,7 @@
                 <div class="table-container">
                     <div class="table-actions-wrapper">
                         <input type="text" class="form-control input-inline" style="margin-right: 8px;" placeholder="广告名称" id="name">
+                        <input type="text" class="form-control input-inline" style="margin-right: 8px;" placeholder=广告公司 id="company">
                         <select class="bs-select form-control" id="status" style="margin-right: 8px;width:118px;float: left">
                             <option value="">状态</option>
                             <option value="1">正常</option>
@@ -84,7 +85,8 @@
                         <tr role="row" class="heading">
                             <th width="5%">ID</th>
                             <th width="7%">广告名称</th>
-                            <th width="10%">类型</th>
+                            <th width="10%">广告公司</th>
+                            <th width="5%">类型</th>
                             <th width="7%">状态</th>
                             <th width="10%">操作</th>
                         </tr>
@@ -115,7 +117,12 @@
                                         <input type="text" class="form-control" name="name" placeholder="">
                                     </div>
                                 </div>
-
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">广告公司</label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" name="company" placeholder="">
+                                    </div>
+                                </div>
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">类型</label>
                                     <div class="col-md-6">
@@ -218,6 +225,7 @@
                                 d.name = $("#name").val();
                                 d.status = $("#status").val();
                                 d.type = $("#type").val();
+                                d.company = $("#company").val();
                             }
                         },
                         'sort': false,
@@ -238,6 +246,7 @@
                         'aoColumns':[
                             {'mData':'id'},
                             {'mData':'name'},
+                            {'mData':'company'},
 
                             {'mData':function(lineData){
                                 if(lineData.type == 1){
@@ -295,9 +304,10 @@
         function add(pid){
             $("#data_form").find("input[name='name']").removeAttr("disabled");
             $("#data_form").find("select[name='type']").removeAttr("disabled");
+            $("#data_form").find("select[name='company']").removeAttr("disabled");
             $("#form-title").html("新增菜单");
             var _token = "{{csrf_token()}}";
-            var datas = '{"name":"","status":"1","type":"","_token":"'+_token+'"}';
+            var datas = '{"name":"","company":"","status":"1","type":"","_token":"'+_token+'"}';
             var datas = eval('('+datas+')');
             fillField('data_form',datas);     //自定义的表单数据填充函数
             $("#stack1").modal("show");
@@ -312,6 +322,7 @@
                 fillField('data_form',data);
                 $("#data_form").find("input[name='name']").attr("disabled","disabled");
                 $("#data_form").find("select[name='type']").attr("disabled",'disabled');
+                $("#data_form").find("select[name='company']").attr("disabled",'disabled');
                 $("#data_form").find("input[name='_token']").val('{{csrf_token()}}');
                 $("#stack1").modal("show");
                 url = '/admin/ad/update/'+id;

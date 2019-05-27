@@ -77,7 +77,15 @@
                 <div class="table-container">
                     <div class="table-actions-wrapper">
                         <input type="text" class="form-control input-inline" style="margin-right: 8px;" placeholder="广告名称" id="ad_name">
+                        <input type="text" class="form-control input-inline" style="margin-right: 8px;" placeholder="广告公司" id="ad_company">
                         <input type="text" class="form-control input-inline" style="margin-right: 8px;" placeholder="渠道包名" id="pack_name">
+                        <input type="text" class="form-control input-inline" style="margin-right: 8px;" placeholder="渠道公司" id="channel_company">
+                        <input type="text" class="form-control input-inline" style="margin-right: 8px;" placeholder="渠道名称" id="channel_name">
+                        <select class="bs-select form-control" id="status" style="margin-right: 8px;width:118px;float: left">
+                            <option value="">广告类型</option>
+                            <option value="1">ios</option>
+                            <option value="2">android</option>
+                        </select>
                         <select class="bs-select form-control" id="status" style="margin-right: 8px;width:118px;float: left">
                             <option value="">渠道包状态</option>
                             <option value="1">正常</option>
@@ -89,9 +97,12 @@
                         <thead>
                         <tr role="row" class="heading">
                             <th width="5%">ID</th>
-                            <th width="7%">广告名称</th>
                             <th width="10%">渠道包名</th>
+                            <th width="7%">广告名称</th>
+                            <th width="7%">广告公司</th>
+                            <th width="7%">广告类型</th>
                             <th width="10%">渠道名称</th>
+                            <th width="10%">渠道公司</th>
                             <th width="10%">单价</th>
                             <th width="7%">状态</th>
                             <th width="10%">操作</th>
@@ -245,6 +256,10 @@
                             "data": function (d) {
                                 d._token = "{{csrf_token()}}";
                                 d.ad_name = $("#ad_name").val();
+                                d.ad_type = $("#ad_type").val();
+                                d.ad_company = $("#ad_company").val();
+                                d.channel_name = $("#channel_name").val();
+                                d.channel_company = $("#channel_company").val();
                                 d.status = $("#status").val();
                                 d.pack_name = $("#pack_name").val();
                             }
@@ -266,9 +281,18 @@
                         },
                         'aoColumns':[
                             {'mData':'id'},
-                            {'mData':'ad_name'},
                             {'mData':'pack_name'},
+                            {'mData':'ad_name'},
+                            {'mData':'ad_company'},
+                            {'mData':function(lineData){
+                                if(lineData.type == 1){
+                                    return "ios";
+                                }else if(lineData.type == 2){
+                                    return "android"
+                                }
+                            }},
                             {'mData':'channel_name'},
+                            {'mData':'channel_company'},
                             {'mData':'price'},
                             {'mData':function(lineData){
                                 if(lineData.status == 1){
@@ -450,46 +474,46 @@
             return true;
         }
 
-        {{--//删除数据方法--}}
-        {{--function del(id){--}}
-            {{--swal({--}}
-                {{--title: "警示",--}}
-                {{--text: "您确认要删除本条数据吗？",--}}
-                {{--type: "warning",--}}
-                {{--showCancelButton: true,--}}
-                {{--confirmButtonColor: "#ea5460",--}}
-                {{--cancelButtonText: "取消",--}}
-                {{--confirmButtonText: "执行删除！",--}}
-                {{--confirmButtonClass:"btn-danger",--}}
-                {{--closeOnConfirm: true--}}
-            {{--}, function (r) {--}}
-                {{--//判断是否正在删除--}}
-                {{--if(r){--}}
-                    {{--$.post("/admin/daily_times/delete/"+id,{'_token':"{{csrf_token()}}"}, function (data) {--}}
-                        {{--toastr.options = {--}}
-                            {{--"closeButton": true,--}}
-                            {{--"debug": false,--}}
-                            {{--"positionClass": "toast-top-center",--}}
-                            {{--"onclick": null,--}}
-                            {{--"showDuration": "1000",--}}
-                            {{--"hideDuration": "1000",--}}
-                            {{--"timeOut": "5000",--}}
-                            {{--"extendedTimeOut": "1000",--}}
-                            {{--"showEasing": "swing",--}}
-                            {{--"hideEasing": "linear",--}}
-                            {{--"showMethod": "fadeIn",--}}
-                            {{--"hideMethod": "fadeOut"--}}
-                        {{--}--}}
-                        {{--if (data.success) {--}}
-                            {{--toastr.success(data.msg, "提示")--}}
-                            {{--$("#datatable_orders").DataTable().ajax.reload();--}}
-                        {{--}else {--}}
-                            {{--toastr.warning(data.msg, "提示")--}}
-                        {{--}--}}
-                    {{--},'json')--}}
-                {{--}--}}
-            {{--});--}}
-        {{--}--}}
+        //删除数据方法
+        function del(id){
+            swal({
+                title: "警示",
+                text: "您确认要删除本条数据吗？删除后影响数据录入",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#ea5460",
+                cancelButtonText: "取消",
+                confirmButtonText: "执行删除！",
+                confirmButtonClass:"btn-danger",
+                closeOnConfirm: true
+            }, function (r) {
+                //判断是否正在删除
+                if(r){
+                    $.post("/admin/pack/delete/"+id,{'_token':"{{csrf_token()}}"}, function (data) {
+                        toastr.options = {
+                            "closeButton": true,
+                            "debug": false,
+                            "positionClass": "toast-top-center",
+                            "onclick": null,
+                            "showDuration": "1000",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                        if (data.success) {
+                            toastr.success(data.msg, "提示")
+                            $("#datatable_orders").DataTable().ajax.reload();
+                        }else {
+                            toastr.warning(data.msg, "提示")
+                        }
+                    },'json')
+                }
+            });
+        }
 
     </script>
 

@@ -29,6 +29,7 @@ class ChannelController extends Controller{
     public function store(Request $request){
         $_POST['asepasswd'] = getmd5passwd($_POST['passwd']);
         $condition['name'] = $request['name'];
+        $condition['company'] = $request['company'];
         $data = $this->actor->store($request,$condition);
         return response()->json($data);
     }

@@ -21,9 +21,9 @@ class PackController extends Controller{
 
     public function index(){
         $ad = new Ad();
-        $adInfo = $ad->getAdName([],1);
+        $adInfo = $ad->getAdNameNew([],1);
         $chanel = new Channel();
-        $channelInfo = $chanel->getChannelName();
+        $channelInfo = $chanel->getChannelNameNew([],1);
         return view('admin/ad/pack',['adInfo'=>$adInfo,'channelInfo'=>$channelInfo]);
     }
 

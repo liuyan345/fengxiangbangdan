@@ -44,5 +44,32 @@ class Ad extends Model
         return $newInfo;
     }
 
+    public function getAdNameNew ($id = [],$status = ''){
+        $model = $this;
+        if(!empty($id)){
+            $model = $model->whereIn("id",$id);
+        }
+        if(!empty($status)){
+            $model = $model->where("status",$status);
+        }
+
+        $info = $model->select("name","id","type","company")->get();
+
+        $info = json_decode(json_encode($info),true);
+        $newInfo  = [];
+        foreach ($info as $v){
+            if($v['type'] == 1){
+                $v['type'] = 'ios';
+            }else if($v['type'] == 2){
+                $v['type'] = 'android';
+            }else{
+                $v['type'] = '未知';
+            }
+            $newInfo[$v['id']] = $v['name'].'('.$v['type'].'-'.$v['company'].')';
+        }
+
+        return $newInfo;
+    }
+
 }
 

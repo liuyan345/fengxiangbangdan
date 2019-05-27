@@ -39,6 +39,10 @@ class AdModel extends Base
             $this->model  = $this->model->where('name','like','%'.$request->input('name').'%');
         }
 
+        if(!empty($request->input('company'))){
+            $this->model  = $this->model->where('company','like','%'.$request->input('company').'%');
+        }
+
         if(!empty($request->input('status'))){
             $this->model  = $this->model->where('status',$request->input('status'));
         }

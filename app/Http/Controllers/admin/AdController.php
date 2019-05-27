@@ -29,6 +29,7 @@ class AdController extends Controller{
     public function store(Request $request){
         $condition['name'] = $request['name'];
         $condition['type'] = $request['type'];
+        $condition['company'] = $request['company'];
         $data = $this->actor->store($request,$condition);
         return response()->json($data);
     }

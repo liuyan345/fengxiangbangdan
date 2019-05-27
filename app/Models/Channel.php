@@ -26,5 +26,27 @@ class Channel extends Model
         return json_decode(json_encode($info),true);
     }
 
+
+    public function getChannelNameNew ($id = [],$status = ''){
+        $model = $this;
+        if(!empty($id)){
+            $model = $model->whereIn("id",$id);
+        }
+        if(!empty($status)){
+            $model = $model->where("status",$status);
+        }
+
+        $info = $model->select("name","id","company")->get();
+
+        $info = json_decode(json_encode($info),true);
+        $newInfo  = [];
+        foreach ($info as $v){
+
+            $newInfo[$v['id']] = $v['name'].'('.$v['company'].')';
+        }
+
+        return $newInfo;
+    }
+
 }
 
