@@ -246,6 +246,13 @@
                                 d.start_time = $("#start_time").val();
                                 d.end_time = $("#end_time").val();
                                 d.status = $("#status").val();
+                            },
+                            "dataSrc": function ( json ) {
+                                console.log(json);
+//                                for ( var i=0, ien=json.data.length ; i<ien ; i++ ) {
+//                                    json.data[i][0] = '<a href="/message/'+json.data[i][0]+'">View message</a>';
+//                                }
+//                                return json.data;
                             }
                         },
                         'sort': false,
@@ -373,6 +380,59 @@
                 }
             });
         });
+
+
+
+
+
+
+
+
+//        $('#tbl').DataTable({
+//            "ajax" : function (data, callback, settings) {
+////封装请求参数
+//                var param = {};
+//                $scope.param.lineNumber = data.length;//页面显示记录条数，在页面显示每页显示多少项的时候
+//                $scope.param.pageNumber = (data.start / data.length)+1;//当前页码
+//                var returnData = {};
+//                returnData.recordsTotal = 0;//返回数据全部记录
+//                returnData.recordsFiltered = 0;//后台不实现过滤功能，每次查询均视作全部结果
+//                returnData.data = [];//返回的数据列表
+//                $http.post('/hb/UserInfo/getPageList.json', $scope.param).then(function(response){
+////$log.info(response.data);
+//                    var resultData = response.data;
+//                    returnData.recordsTotal = resultData.totalCount;//返回数据全部记录
+//                    returnData.recordsFiltered = resultData.totalCount;//后台不实现过滤功能，每次查询均视作全部结果
+//                    returnData.data = resultData.result;//返回的数据列表
+//// $log.info(resultData);
+//                    callback(returnData);
+//                }, function(err){
+//                    alert("数据加载请求异常");
+//                });
+//            },
+//            "serverSide": true,
+//            "language":$scope.datatables_lang, //提示信息
+//            "renderer": "bootstrap", //渲染样式：Bootstrap和jquery-ui
+//            "pagingType": "full_numbers", //分页样式：simple,simple_numbers,full,full_numbers
+//            "bFilter": true,
+//            "bSort": false,
+//            /*"scrollX": true,*/
+//            "fnInitComplete": function (oSettings, json) {
+//
+//            },
+//            "columns": []
+//        })
+//
+//
+//
+
+
+
+
+
+
+
+
 
         function download(){
             window.location.href = '/admin/data/download';
