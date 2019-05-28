@@ -38,12 +38,7 @@ auther 刘岩
                                 <input type="text" class="form-control"  disabled="disabled" value="{{$channelInfo['company']}}">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">下载地址<span class="required">*</span></label>
-                            <div class="col-md-6">
-                                <input type="text" class="form-control" name="loadlink" @if(!empty($channelInfo['loadlink'])) value="{{$channelInfo['loadlink']}}" @endif>
-                            </div>
-                        </div>
+
                         <div class="form-group">
                             <label class="col-md-3 control-label">联系人<span class="required">*</span></label>
                             <div class="col-md-6">
@@ -84,6 +79,12 @@ auther 刘岩
                                     <option value="3" @if(!empty($channelInfo['type']) && $channelInfo['type'] == 3) selected="selected" @endif>APP</option>
                                     <option value="4" @if(!empty($channelInfo['type']) && $channelInfo['type'] == 4) selected="selected" @endif>其他</option>
                                 </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-md-3 control-label">下载地址<span class="required">*</span></label>
+                            <div class="col-md-6">
+                                <input type="text" class="form-control" name="loadlink" @if(!empty($channelInfo['loadlink'])) value="{{$channelInfo['loadlink']}}" @endif>
                             </div>
                         </div>
                     </div>

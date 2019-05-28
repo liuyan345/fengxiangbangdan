@@ -129,12 +129,7 @@
                                         <input type="text" class="form-control" name="company" placeholder="">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label class="col-md-3 control-label">下载地址</label>
-                                    <div class="col-md-6">
-                                        <input type="text" class="form-control" name="loadlink" placeholder="">
-                                    </div>
-                                </div>
+
                                 <div class="form-group">
                                     <label class="col-md-3 control-label">联系人</label>
                                     <div class="col-md-6">
@@ -175,6 +170,12 @@
                                             <option value="3">APP</option>
                                             <option value="4">其他</option>
                                         </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">下载地址</label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" name="loadlink" placeholder="">
                                     </div>
                                 </div>
                                 <div class="form-group">
