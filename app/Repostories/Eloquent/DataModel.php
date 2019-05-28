@@ -61,7 +61,7 @@ class DataModel extends Base
             $this->model = $this->model->where("status",$request['status']);
         }
         if(!empty($request['ad_type'])){
-            $this->model = $this->model->where("type",$request['ad_type']);
+            $this->model = $this->model->where("ad_type",$request['ad_type']);
         }
 
         $start = isset($_POST['start']) ? intval($_POST['start']) : 0;
