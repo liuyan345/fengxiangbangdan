@@ -42,37 +42,37 @@ auther 刘岩
                         <div class="form-group">
                             <label class="col-md-3 control-label">联系人<span class="required">*</span></label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="linkman" @if(!empty($channelInfo['linkman'])) value="{{$channelInfo['linkman']}}" @endif>
+                                <input type="text" class="form-control" name="linkman" @if(!empty($channelInfo['linkman'])) value="{{$channelInfo['linkman']}}" disabled="disabled"  @endif>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">联系人手机号<span class="required">*</span></label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="linkmanMobile" @if(!empty($channelInfo['linkmanMobile'])) value="{{$channelInfo['linkmanMobile']}}" @endif>
+                                <input type="text" class="form-control" name="linkmanMobile" @if(!empty($channelInfo['linkmanMobile'])) value="{{$channelInfo['linkmanMobile']}}"  disabled="disabled" @endif>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">联系人qq</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="qq" @if(!empty($channelInfo['qq'])) value="{{$channelInfo['qq']}}" @endif>
+                                <input type="text" class="form-control" name="qq" @if(!empty($channelInfo['qq'])) value="{{$channelInfo['qq']}}"  disabled="disabled" @endif>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">联系人邮箱</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="email" @if(!empty($channelInfo['email'])) value="{{$channelInfo['email']}}" @endif>
+                                <input type="text" class="form-control" name="email" @if(!empty($channelInfo['email'])) value="{{$channelInfo['email']}}"  disabled="disabled" @endif>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">地区</label>
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="area" @if(!empty($channelInfo['area'])) value="{{$channelInfo['area']}}" @endif>
+                                <input type="text" class="form-control" name="area" @if(!empty($channelInfo['area'])) value="{{$channelInfo['area']}}"  disabled="disabled" @endif>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">渠道类型</label>
                             <div class="col-md-6">
-                                <select name="type" class="form-control">
+                                <select name="type" class="form-control" @if(!empty($channelInfo['type'])) disabled="disabled" @endif>
                                     <option value="">-请选择-</option>
                                     <option value="1" @if(!empty($channelInfo['type']) && $channelInfo['type'] == 1) selected="selected" @endif>wap</option>
                                     <option value="2" @if(!empty($channelInfo['type']) && $channelInfo['type'] == 2) selected="selected" @endif>应用市场</option>

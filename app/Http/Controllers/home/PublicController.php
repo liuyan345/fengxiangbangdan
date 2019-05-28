@@ -37,7 +37,7 @@ class PublicController extends Controller
 
             $request->session()->put('home', $adminInfo);
 
-            return redirect('/home/info');
+            return redirect('/home/data');
         }
 
     }
@@ -115,7 +115,7 @@ class PublicController extends Controller
 
                 $request->session()->put('home', $adminInfo);
 
-                return redirect('/home/info');
+                return redirect('/home/data');
             }
         }else{
             return redirect('/home/login')->with('message', array('type' => 'fail','content'=>'注册失败，请重新注册'));
