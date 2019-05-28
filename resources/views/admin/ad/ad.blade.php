@@ -67,7 +67,8 @@
                 <div class="table-container">
                     <div class="table-actions-wrapper">
                         <input type="text" class="form-control input-inline" style="margin-right: 8px;" placeholder="广告名称" id="name">
-                        <input type="text" class="form-control input-inline" style="margin-right: 8px;" placeholder=广告公司 id="company">
+                        <input type="text" class="form-control input-inline" style="margin-right: 8px;" placeholder="广告公司" id="company">
+                        <input type="text" class="form-control input-inline" style="margin-right: 8px;" placeholder="负责人" id="adminName">
                         <select class="bs-select form-control" id="status" style="margin-right: 8px;width:118px;float: left">
                             <option value="">状态</option>
                             <option value="1">正常</option>
@@ -88,6 +89,7 @@
                             <th width="10%">广告公司</th>
                             <th width="5%">类型</th>
                             <th width="7%">状态</th>
+                            <th width="7%">负责人</th>
                             <th width="10%">操作</th>
                         </tr>
                         </thead>
@@ -141,6 +143,12 @@
                                             <option value="1">正常</option>
                                             <option value="2">禁用</option>
                                         </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-3 control-label">负责人</label>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" name="adminName" placeholder="">
                                     </div>
                                 </div>
                             </div>
@@ -226,6 +234,7 @@
                                 d.status = $("#status").val();
                                 d.type = $("#type").val();
                                 d.company = $("#company").val();
+                                d.adminName = $("#adminName").val();
                             }
                         },
                         'sort': false,
@@ -262,6 +271,7 @@
                                     return "<span style='color:red'>禁用</span>";
                                 }
                             }},
+                            {'mData':'adminName'},
                             { "mData": function(lineData){
                                 var id = lineData.id;
                                 var del = '<button  class="btn btn-sm btn-danger" onclick="del(\''+id+'\')">删除<i class="icon-minus"></i></button>';

@@ -43,13 +43,17 @@ class AdModel extends Base
             $this->model  = $this->model->where('company','like','%'.$request->input('company').'%');
         }
 
+        if(!empty($request->input('adminName'))){
+            $this->model  = $this->model->where('adminName','like','%'.$request->input('adminName').'%');
+        }
+
         if(!empty($request->input('status'))){
             $this->model  = $this->model->where('status',$request->input('status'));
         }
         if(!empty($request->input('ad_type'))){
             $this->model  = $this->model->where('ad_type',$request->input('ad_type'));
         }
-
+       
         $start = isset($_POST['start']) ? intval($_POST['start']) : 0;
         $rows = isset($_POST['length']) ? intval($_POST['length']) == 0 ? 10 : intval($_POST['length']) : 10;
 
