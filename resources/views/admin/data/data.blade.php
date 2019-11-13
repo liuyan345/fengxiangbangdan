@@ -165,11 +165,7 @@
                             <button class="btn btn-sm btn-default table-group-action-submit"><i
                                         class="fa fa-search"></i> 搜索
                             </button>
-                        </div>
-                        <div class="search_laber">
                             <button class="btn btn-sm btn-info" onclick="jiesuan()">批量结算</button>
-                        </div>
-                        <div class="search_laber">
                             <button class="btn btn-sm btn-warning" onclick="deleteAll()">批量删除</button>
                         </div>
                     </div>
