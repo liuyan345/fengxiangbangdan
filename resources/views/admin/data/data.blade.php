@@ -393,6 +393,8 @@
             $(this).next().children(":first-child").click();
         });
 
+//        $("#datatable_orders thead th").
+
 
         // 上传视频列表文件
         $(".pic_up").on('change', function () {
