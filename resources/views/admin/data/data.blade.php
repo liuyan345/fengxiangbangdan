@@ -398,8 +398,20 @@
             $(this).next().children(":first-child").click();
         });
 
-//        $("#datatable_orders thead th").
+//
+        var touchtime = new Date().getTime();
 
+        $("#datatable_orders thead th").on("click", function(){
+            if( new Date().getTime() - touchtime < 500 ){
+                var index= $(this).parent().index(this);
+                var text = $(this).html();
+                console.log(index,"_",text);
+                console.log("dblclick");
+            }else{
+                touchtime = new Date().getTime();
+                console.log("click")
+            }
+        });
 
         // 上传视频列表文件
         $(".pic_up").on('change', function () {
