@@ -51,6 +51,13 @@ class DataController extends Controller
         return response()->json($infos);
     }
 
+    public function delete(Request $request,$id)
+    {
+        $infos = $this->actor->delete($request,$id);
+        return response()->json($infos);
+
+    }
+
 
 
 }

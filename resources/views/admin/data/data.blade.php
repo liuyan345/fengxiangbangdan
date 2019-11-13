@@ -175,8 +175,8 @@
                             </th>
                             <th width="5%">id</th>
                             <th width="10%">数据日期</th>
-                            <th width="7%">渠道名称</th>
-                            <th width="7%">渠道公司</th>
+                            {{--<th width="7%">渠道名称</th>--}}
+                            {{--<th width="7%">渠道公司</th>--}}
                             <th width="7%">广告名称</th>
                             <th width="7%">广告公司</th>
                             <th width="7%">渠道包</th>
@@ -188,6 +188,7 @@
                             <th width="7%">日志排重点击</th>
                             <th width="7%">排重点击</th>
                             <th width="7%">收益</th>
+                            <th width="7%">操作</th>
                         </tr>
                         </thead>
 
@@ -296,8 +297,8 @@
                             },
                             {'mData':'id'},
                             {'mData':'cdate'},
-                            {'mData':'channel_name'},
-                            {'mData':'channel_company'},
+//                            {'mData':'channel_name'},
+//                            {'mData':'channel_company'},
                             {'mData':'ad_name'},
                             {'mData':'ad_company'},
                             {'mData':'pack_name'},
@@ -324,7 +325,15 @@
                             {'mData':'logClick'},
                             {'mData':'logSingleClick'},
                             {'mData':'singleClick'},
-                            {'mData':'money'}
+                            {'mData':'money'},
+                            {'mData': function(lineData){
+                                var status = lineData.status;
+                                if(status == 1){
+                                    return  '<button  class="btn btn-sm btn-danger" onclick="del(\''+lineData.id+'\')">删除<i class="icon-minus"></i></button>';
+                                }else{
+                                    return  '-';
+                                }
+                            } }
                         ],
 
 
@@ -408,7 +417,46 @@
 
 
 
-
+        //删除数据方法
+        function del(id){
+            swal({
+                title: "警示",
+                text: "您确认要删除本条数据吗？",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#ea5460",
+                cancelButtonText: "取消",
+                confirmButtonText: "执行删除！",
+                confirmButtonClass:"btn-danger",
+                closeOnConfirm: true
+            }, function (r) {
+                //判断是否正在删除
+                if(r){
+                    $.post("/admin/data/delete/"+id,{'_token':"{{csrf_token()}}"}, function (data) {
+                        toastr.options = {
+                            "closeButton": true,
+                            "debug": false,
+                            "positionClass": "toast-top-center",
+                            "onclick": null,
+                            "showDuration": "1000",
+                            "hideDuration": "1000",
+                            "timeOut": "5000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                        if (data.success) {
+                            toastr.success(data.msg, "提示")
+                            $("#datatable_orders").DataTable().ajax.reload();
+                        }else {
+                            toastr.warning(data.msg, "提示")
+                        }
+                    },'json')
+                }
+            });
+        }
 
 
 
