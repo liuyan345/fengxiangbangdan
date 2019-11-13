@@ -166,7 +166,7 @@
                                         class="fa fa-search"></i> 搜索
                             </button>
                             <button class="btn btn-sm btn-info" onclick="jiesuan()">批量结算</button>
-                            <button class="btn btn-sm btn-warning" onclick="deleteAll()">批量删除</button>
+                            <button class="btn btn-sm btn-danger" onclick="deleteAll()">批量删除</button>
                         </div>
                     </div>
                     <table class="table table-striped table-bordered table-hover table-checkable" id="datatable_orders">
