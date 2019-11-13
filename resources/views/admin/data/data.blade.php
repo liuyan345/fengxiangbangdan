@@ -161,8 +161,17 @@
                             </div>
                             <input type="hidden" id="end_time" name="end_time" value="" />
                         </div>
-                        <button class="btn btn-sm btn-default table-group-action-submit"><i class="fa fa-search"></i> 搜索</button>
-                        <button class="btn btn-sm btn-info" onclick="jiesuan()">批量结算</button>
+                        <div class="search_laber">
+                            <button class="btn btn-sm btn-default table-group-action-submit"><i
+                                        class="fa fa-search"></i> 搜索
+                            </button>
+                        </div>
+                        <div class="search_laber">
+                            <button class="btn btn-sm btn-info" onclick="jiesuan()">批量结算</button>
+                        </div>
+                        <div class="search_laber">
+                            <button class="btn btn-sm btn-warning" onclick="deleteAll()">批量删除</button>
+                        </div>
                     </div>
                     <table class="table table-striped table-bordered table-hover table-checkable" id="datatable_orders">
                         <thead>
@@ -545,6 +554,52 @@
                 if (r) {
                     App.blockUI({animate: true});
                     $.post("/admin/data/jiesuan", {'ids': ids,'_token': "{{csrf_token()}}"}, function (data) {
+                        App.unblockUI();
+                        check = true;
+                        if (data.success) {
+                            toastr.success(data.msg, "提示")
+                            $("#datatable_orders").DataTable().ajax.reload(null, false);
+                        } else {
+                            toastr.warning(data.msg, "提示")
+                        }
+                    }, 'json')
+                }
+            });
+
+        }
+
+        function deleteAll() {
+            var ids = '';
+            var num = 0;
+            $(".checkboxes").each(function () {
+                if ($(this).is(':checked')) {
+                    var value = $(this).val();
+                    if (ids == '') {
+                        ids = value;
+                    } else {
+                        ids += ',' + value;
+                    }
+                    num++;
+                }
+            })
+            if (num == 0) {
+                return false;
+            }
+            swal({
+                title: "警示",
+                text: "您确认要批量删除" + num + "条数据吗？",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#ea5460",
+                cancelButtonText: "取消",
+                confirmButtonText: "确定结算！",
+                confirmButtonClass: "btn-success",
+                closeOnConfirm: true
+            }, function (r) {
+                //判断是否正在删除
+                if (r) {
+                    App.blockUI({animate: true});
+                    $.post("/admin/data/deleteAll", {'ids': ids,'_token': "{{csrf_token()}}"}, function (data) {
                         App.unblockUI();
                         check = true;
                         if (data.success) {

@@ -118,6 +118,7 @@ Route::group(['prefix' => 'admin','middleware'=>'AdminCommon'], function () {
     Route::post('data/upload','admin\DataController@upload');
     Route::get('data/download','admin\DataController@download');
     Route::post('data/jiesuan','admin\DataController@jiesuan');
+    Route::post('data/deleteAll','admin\DataController@deleteAll');
     Route::post('data/delete/{id}','admin\DataController@delete');
 });
 

@@ -256,6 +256,21 @@ class DataModel extends Base
 
     }
 
+    public function deleteAll($request){
+        $ids = $request->input("ids");
+        $ids = explode(",", $ids);
+        $ids = array_flip(array_flip($ids));
+
+        $res = $this->model->whereIn("id",$ids)->delete();
+
+        if($res){
+            return ['success'=>true,"msg"=>"删除成功"];
+        }else{
+            return ['success'=>false,"msg"=>"删除失败"];
+        }
+
+    }
+
 
 
 }
