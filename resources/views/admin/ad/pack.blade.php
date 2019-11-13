@@ -212,6 +212,11 @@
     <script>
         $(document).ready(function() {
             $('.js-example-basic-single').select2({"width":294});
+            $('.js-example-basic-single').on("select2:select",function(e){
+                var value = $(this).select2("val");
+                var text = $(this).select2("data").text;
+                console.log(value,text);
+            });
         });
         var url;
         var check = true;

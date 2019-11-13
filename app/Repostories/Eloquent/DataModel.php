@@ -91,6 +91,9 @@ class DataModel extends Base
         $footer['price'] = "";
         $footer['ad_company'] = "";
         $footer['channel_company'] = "";
+        $footer['logClick'] = "";
+        $footer['logSingleClick'] = "";
+        $footer['singleClick'] = "";
         $footer['money'] = round($footer['money'],2);
         $list[] = $footer;
 
@@ -193,6 +196,9 @@ class DataModel extends Base
                 $temp['price'] = $dataInfo[2];
                 $temp['data'] = $dataInfo[3];
                 $temp['money'] = $dataInfo[4];
+                $temp['logClick'] = $dataInfo[5];
+                $temp['logSingleClick'] = $dataInfo[6];
+                $temp['singleClick'] = $dataInfo[7];
                 $temp['created_at'] = date("Y-m-d H:i:s");
 
                 $this->model->insert($temp);
@@ -208,15 +214,15 @@ class DataModel extends Base
     public function download(){
         ob_end_clean(); // 解决中文乱码问题
         $cellData = [
-            ['a'=>'日期','b'=>'渠道包名称','c'=>'单价','d'=>"注册数",'e'=>'收益'], // 这里可以不注释 直接写到数据里面去 但是为了单独的设置表头 可以拿出来单独写入
-            ['a'=>'2019/5/1','b'=>'fndexiaonx','c'=>'1.2','d'=>'2156','e'=>'2587.2'],
-            ['a'=>'2019/5/2','b'=>'fndexiaonx','c'=>'1.2','d'=>'2156','e'=>'2587.2'],
-            ['a'=>'2019/5/3','b'=>'fndexiaonx','c'=>'1.2','d'=>'2156','e'=>'2587.2'],
-            ['a'=>'2019/5/4','b'=>'fndexiaonx','c'=>'1.2','d'=>'2156','e'=>'2587.2'],
-            ['a'=>'2019/5/5','b'=>'fndexiaonx','c'=>'1.2','d'=>'2156','e'=>'2587.2'],
-            ['a'=>'2019/5/6','b'=>'fndexiaonx','c'=>'1.2','d'=>'2156','e'=>'2587.2'],
-            ['a'=>'2019/5/7','b'=>'fndexiaonx','c'=>'1.2','d'=>'2156','e'=>'2587.2'],
-            ['a'=>'2019/5/8','b'=>'fndexiaonx','c'=>'1.2','d'=>'2156','e'=>'2587.2'],
+            ['a'=>'日期','b'=>'渠道包名称','c'=>'单价','d'=>"注册数",'e'=>'收益','f'=>'日志点击','g'=>'日志排重点击','h'=>"排重点击"], // 这里可以不注释 直接写到数据里面去 但是为了单独的设置表头 可以拿出来单独写入
+            ['a'=>'2019/5/1','b'=>'fndexiaonx','c'=>'1.2','d'=>'2156','e'=>'2587.2','f'=>'32','g'=>'43','h'=>'90'],
+            ['a'=>'2019/5/2','b'=>'fndexiaonx','c'=>'1.2','d'=>'2156','e'=>'2587.2','f'=>'32','g'=>'43','h'=>'90'],
+            ['a'=>'2019/5/3','b'=>'fndexiaonx','c'=>'1.2','d'=>'2156','e'=>'2587.2','f'=>'32','g'=>'43','h'=>'90'],
+            ['a'=>'2019/5/4','b'=>'fndexiaonx','c'=>'1.2','d'=>'2156','e'=>'2587.2','f'=>'32','g'=>'43','h'=>'90'],
+            ['a'=>'2019/5/5','b'=>'fndexiaonx','c'=>'1.2','d'=>'2156','e'=>'2587.2','f'=>'32','g'=>'43','h'=>'90'],
+            ['a'=>'2019/5/6','b'=>'fndexiaonx','c'=>'1.2','d'=>'2156','e'=>'2587.2','f'=>'32','g'=>'43','h'=>'90'],
+            ['a'=>'2019/5/7','b'=>'fndexiaonx','c'=>'1.2','d'=>'2156','e'=>'2587.2','f'=>'32','g'=>'43','h'=>'90'],
+            ['a'=>'2019/5/8','b'=>'fndexiaonx','c'=>'1.2','d'=>'2156','e'=>'2587.2','f'=>'32','g'=>'43','h'=>'90'],
         ];
 
         Excel::create("模板",function($excel) use ($cellData){
@@ -227,6 +233,9 @@ class DataModel extends Base
                     $sheet->cell('C'.($k+1),$val['c']);
                     $sheet->cell('D'.($k+1),$val['d']);
                     $sheet->cell('E'.($k+1),$val['e']);
+                    $sheet->cell('F'.($k+1),$val['f']);
+                    $sheet->cell('G'.($k+1),$val['g']);
+                    $sheet->cell('H'.($k+1),$val['h']);
                 }
             });
         })->export('xls');

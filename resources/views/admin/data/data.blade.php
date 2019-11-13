@@ -184,6 +184,9 @@
                             <th width="7%">数据状态</th>
                             <th width="7%">单价</th>
                             <th width="7%">注册数</th>
+                            <th width="7%">日志点击</th>
+                            <th width="7%">日志排重点击</th>
+                            <th width="7%">排重点击</th>
                             <th width="7%">收益</th>
                         </tr>
                         </thead>
@@ -318,6 +321,9 @@
                             }},
                             {'mData':'price'},
                             {'mData':'data'},
+                            {'mData':'logClick'},
+                            {'mData':'logSingleClick'},
+                            {'mData':'singleClick'},
                             {'mData':'money'}
                         ],
 
