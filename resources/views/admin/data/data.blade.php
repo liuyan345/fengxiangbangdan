@@ -542,8 +542,8 @@
                 showCancelButton: true,
                 confirmButtonColor: "#ea5460",
                 cancelButtonText: "取消",
-                confirmButtonText: "确定结算！",
-                confirmButtonClass: "btn-success",
+                confirmButtonText: "批量删除",
+                confirmButtonClass: "btn-danger",
                 closeOnConfirm: true
             }, function (r) {
                 //判断是否正在删除
