@@ -403,7 +403,7 @@
 
         $("#datatable_orders thead th").on("click", function(){
             if( new Date().getTime() - touchtime < 500 ){
-                var index= $("#datatable_orders thead tr").index(this);
+                var index= $("#datatable_orders thead th").index(this);
                 var text = $(this).html();
                 console.log(index,"_",text);
                 console.log("dblclick");
