@@ -404,13 +404,13 @@
         $("#datatable_orders thead th").on("click", function(){
             if( new Date().getTime() - touchtime < 500 ){
                 var index= $("#datatable_orders thead th").index(this);
-                var text = $(this).html();
+                $(this).hide();
+//                var text = $(this).html();
                 $("#datatable_orders tbody tr").each(function () {
-                    console.log($(this).children('td').eq(index).html());
+                    $(this).children('td').eq(index).hide();
                 })
             }else{
                 touchtime = new Date().getTime();
-                console.log("click")
             }
         });
 
