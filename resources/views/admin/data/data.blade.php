@@ -112,20 +112,7 @@
                     <i class="icon-settings font-green"></i>
                     <span class="caption-subject font-green sbold uppercase">数据列表</span>
                 </div>
-                <div class="actions">
-                    <div class="btn-group btn-group-devided" data-toggle="buttons" onclick="download()">
-                        <label class="btn btn-transparent blue btn-outline btn-outline btn-sm active" >
-                            <input type="radio" class="toggle" > 下载模板
-                        </label>
-                    </div>
-                    <div class="btn-group btn-group-devided" data-toggle="buttons" data-times="0" id="uploadVideo">
-                        <label class="btn btn-transparent green btn-outline btn-outline btn-sm active" >
-                            <input type="radio" class="toggle" >上传新数据
-                        </label>
-                    </div>
-                    <input class="pic_up" type="file" name="videoList"  style="display: none"
-                           accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.csv,application/vnd.ms-excel">
-                </div>
+
             </div>
             <div class="portlet-body">
                 <div class="table-container">
@@ -202,7 +189,20 @@
             </div>
         </div>
         <!-- End: life time stats -->
-
+        <div class="actions">
+            <div class="btn-group btn-group-devided" data-toggle="buttons" onclick="download()">
+                <label class="btn btn-transparent blue btn-outline btn-outline btn-sm active" >
+                    <input type="radio" class="toggle" > 下载模板
+                </label>
+            </div>
+            <div class="btn-group btn-group-devided" data-toggle="buttons" data-times="0" id="uploadVideo">
+                <label class="btn btn-transparent green btn-outline btn-outline btn-sm active" >
+                    <input type="radio" class="toggle" >上传新数据
+                </label>
+            </div>
+            <input class="pic_up" type="file" name="videoList"  style="display: none"
+                   accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,.csv,application/vnd.ms-excel">
+        </div>
     </div>
     <!-- end: deduct add -->
     </div>
