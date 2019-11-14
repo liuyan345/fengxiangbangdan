@@ -405,8 +405,9 @@
             if( new Date().getTime() - touchtime < 500 ){
                 var index= $("#datatable_orders thead th").index(this);
                 var text = $(this).html();
-                console.log(index,"_",text);
-                console.log("dblclick");
+                $("#datatable_orders tbody tr").each(function () {
+                    console.log($(this).children('td').eq(index).html());
+                })
             }else{
                 touchtime = new Date().getTime();
                 console.log("click")
