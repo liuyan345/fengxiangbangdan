@@ -180,8 +180,8 @@
                             </th>
                             <th width="5%">id</th>
                             <th width="10%">数据日期</th>
-                            {{--<th width="7%">渠道名称</th>--}}
-                            {{--<th width="7%">渠道公司</th>--}}
+                            <th width="7%">渠道名称</th>
+                            <th width="7%">渠道公司</th>
                             <th width="7%">广告名称</th>
                             <th width="7%">广告公司</th>
                             <th width="7%">渠道包</th>
@@ -302,8 +302,8 @@
                             },
                             {'mData':'id'},
                             {'mData':'cdate'},
-//                            {'mData':'channel_name'},
-//                            {'mData':'channel_company'},
+                            {'mData':'channel_name'},
+                            {'mData':'channel_company'},
                             {'mData':'ad_name'},
                             {'mData':'ad_company'},
                             {'mData':'pack_name'},
